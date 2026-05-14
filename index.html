@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Japan Budget Trip - Japan Travel Costs, Itineraries, and Planning Tools</title>
+    <meta
+      name="description"
+      content="Plan a smarter Japan trip with realistic budgets, city-by-city itineraries, and practical tools for hotels, transport, food, and daily travel costs."
+    >
+    <link rel="canonical" href="https://japanbudgettrip.com/">
+    <meta property="og:title" content="Japan Budget Trip">
+    <meta property="og:description" content="Realistic Japan travel budgets, itineraries, and planning tools.">
+    <meta property="og:image" content="https://japanbudgettrip.com/assets/japan-budget-hero.png">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#163b43">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Japan Budget Trip home">
+        <span class="brand-mark" aria-hidden="true">JBT</span>
+        <span>Japan Budget Trip</span>
+      </a>
+      <nav class="nav-links" aria-label="Site sections">
+        <a href="#costs">Costs</a>
+        <a href="#itineraries">Itineraries</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#guides">Guides</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/japan-budget-hero.png" alt="Japan travel planning table with map, coins, phone, and notebook">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Japan travel planning without guesswork</p>
+          <h1 id="hero-title">Plan a Japan trip that fits your budget.</h1>
+          <p class="hero-copy">
+            Realistic trip costs, city-by-city itineraries, and practical tools for travelers who want Japan to feel clear before they book.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#calculator">Estimate Your Trip</a>
+            <a class="button secondary" href="#itineraries">Browse Itineraries</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-band" aria-label="Quick budget benchmarks">
+        <div>
+          <span class="stat-value">$65-95</span>
+          <span class="stat-label">daily budget traveler range</span>
+        </div>
+        <div>
+          <span class="stat-value">7 days</span>
+          <span class="stat-label">ideal first Japan route</span>
+        </div>
+        <div>
+          <span class="stat-value">3 cities</span>
+          <span class="stat-label">Tokyo, Kyoto, Osaka base plan</span>
+        </div>
+      </section>
+
+      <section class="section" id="costs">
+        <div class="section-header">
+          <p class="eyebrow">Trip costs</p>
+          <h2>Know the real numbers before booking.</h2>
+        </div>
+        <div class="cost-grid">
+          <article class="info-card">
+            <span class="card-kicker">Sleep</span>
+            <h3>Hotels and hostels</h3>
+            <p>Compare capsule hotels, business hotels, guesthouses, and mid-range stays by city and season.</p>
+          </article>
+          <article class="info-card">
+            <span class="card-kicker">Move</span>
+            <h3>Transport passes</h3>
+            <p>Choose between IC cards, regional passes, buses, and trains without overpaying for a pass you will not use.</p>
+          </article>
+          <article class="info-card">
+            <span class="card-kicker">Eat</span>
+            <h3>Food budgets</h3>
+            <p>Build a daily plan from convenience stores, ramen shops, casual restaurants, and one planned splurge.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="calculator">
+        <div class="section-header compact">
+          <p class="eyebrow">Free tool</p>
+          <h2>Japan trip budget calculator</h2>
+          <p>
+            Estimate the on-ground cost for your Japan trip. Flights are excluded because they vary heavily by origin city.
+          </p>
+        </div>
+
+        <form class="calculator" id="budget-form">
+          <label>
+            Days in Japan
+            <input id="days" name="days" type="number" min="1" max="60" value="7">
+          </label>
+          <label>
+            Travelers
+            <input id="travelers" name="travelers" type="number" min="1" max="12" value="2">
+          </label>
+          <label>
+            Travel style
+            <select id="style" name="style">
+              <option value="budget">Budget</option>
+              <option value="comfort" selected>Comfort</option>
+              <option value="midrange">Mid-range</option>
+            </select>
+          </label>
+          <label>
+            Cities
+            <select id="cities" name="cities">
+              <option value="one">One city</option>
+              <option value="two" selected>Two cities</option>
+              <option value="three">Three or more</option>
+            </select>
+          </label>
+          <div class="result" aria-live="polite">
+            <span class="result-label">Estimated total</span>
+            <strong id="total">$0</strong>
+            <span id="daily" class="result-note">$0 per traveler per day</span>
+          </div>
+        </form>
+      </section>
+
+      <section class="section muted" id="itineraries">
+        <div class="section-header">
+          <p class="eyebrow">Starter itineraries</p>
+          <h2>Build the site around high-intent routes.</h2>
+        </div>
+        <div class="route-list">
+          <article class="route">
+            <div>
+              <span>First Japan Trip</span>
+              <h3>Tokyo, Kyoto, Osaka in 7 days</h3>
+            </div>
+            <p>Best for travelers who want the classic route with realistic hotel, food, and train costs.</p>
+          </article>
+          <article class="route">
+            <div>
+              <span>Tokyo Focus</span>
+              <h3>5 days in Tokyo under $750</h3>
+            </div>
+            <p>Neighborhood base guide, local trains, cheap eats, free viewpoints, and one paid highlight.</p>
+          </article>
+          <article class="route">
+            <div>
+              <span>Slow Travel</span>
+              <h3>10 days with fewer hotel changes</h3>
+            </div>
+            <p>A calmer plan for couples, families, and first-time travelers who do not want to rush.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="guides">
+        <div class="section-header">
+          <p class="eyebrow">Launch content plan</p>
+          <h2>The first articles should target buying decisions.</h2>
+        </div>
+        <div class="guide-grid">
+          <a class="guide-link" href="#">Japan eSIM vs pocket WiFi</a>
+          <a class="guide-link" href="#">Where to stay in Tokyo on a budget</a>
+          <a class="guide-link" href="#">JR Pass alternatives in 2026</a>
+          <a class="guide-link" href="#">Japan travel insurance checklist</a>
+          <a class="guide-link" href="#">Osaka and Kyoto transport costs</a>
+          <a class="guide-link" href="#">Japan packing list for first timers</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Japan Budget Trip</p>
+      <p>Independent travel planning guides and calculators for Japan.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
