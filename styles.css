@@ -419,6 +419,10 @@ a {
   color: var(--muted);
 }
 
+.guide-card.text-only {
+  padding-top: 8px;
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;
