@@ -380,7 +380,7 @@ a {
 .guide-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-bottom: 1px solid var(--line);
 }
@@ -417,10 +417,6 @@ a {
 
 .guide-card.upcoming strong {
   color: var(--muted);
-}
-
-.guide-card.text-only {
-  padding-top: 8px;
 }
 
 .site-footer {
@@ -467,11 +463,11 @@ a {
 }
 
 .article-featured-image {
-  width: min(1060px, calc(100% - 36px));
-  margin: -18px auto 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: min(920px, calc(100% - 36px));
+  margin: 28px auto 0;
+  border: 1px solid var(--line);
   border-radius: 8px;
-  box-shadow: 0 24px 58px rgba(16, 35, 38, 0.18);
+  box-shadow: none;
   overflow: hidden;
   background: var(--white);
 }
@@ -479,7 +475,7 @@ a {
 .article-featured-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
