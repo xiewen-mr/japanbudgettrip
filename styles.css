@@ -599,7 +599,7 @@ a {
 }
 
 .mascot-card {
-  width: min(320px, calc(100vw - 28px));
+  width: min(340px, calc(100vw - 28px));
   padding: 16px;
   border: 1px solid rgba(20, 59, 66, 0.16);
   border-radius: 8px;
@@ -612,11 +612,30 @@ a {
   display: none;
 }
 
+.mascot-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .mascot-kicker {
   color: var(--red);
   font-size: 12px;
   font-weight: 820;
   text-transform: uppercase;
+}
+
+.mascot-mood {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 0 9px;
+  color: var(--teal-dark);
+  background: var(--soft);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .mascot-card p {
@@ -656,8 +675,8 @@ a {
 }
 
 .mascot-button {
-  width: 92px;
-  height: 92px;
+  width: 106px;
+  height: 100px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -665,6 +684,14 @@ a {
   pointer-events: auto;
   filter: drop-shadow(0 14px 22px rgba(16, 35, 38, 0.24));
   animation: mascot-float 3.6s ease-in-out infinite;
+}
+
+.mascot-widget.is-open .mascot-button {
+  animation-duration: 2.2s;
+}
+
+.mascot-widget.is-excited .mascot-button {
+  animation: mascot-hop 460ms ease;
 }
 
 .mascot-button:hover .mascot-daruma,
@@ -696,26 +723,41 @@ a {
   fill: #fff7df;
 }
 
-.mascot-pack {
-  fill: #1d5960;
-  stroke: #143b42;
+.mascot-suitcase {
+  fill: var(--teal);
+  stroke: var(--teal-dark);
   stroke-width: 5;
   stroke-linejoin: round;
 }
 
-.mascot-strap,
+.mascot-handle,
+.mascot-sticker,
+.mascot-arm-left,
+.mascot-arm-right,
 .mascot-smile,
 .mascot-brow,
 .mascot-belly,
+.mascot-route,
 .mascot-yen {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.mascot-strap {
-  stroke: #fff7df;
+.mascot-handle,
+.mascot-sticker {
+  stroke: var(--teal-dark);
   stroke-width: 5;
+}
+
+.mascot-wheel {
+  fill: var(--teal-dark);
+}
+
+.mascot-arm-left,
+.mascot-arm-right {
+  stroke: #fff7df;
+  stroke-width: 7;
 }
 
 .mascot-eye {
@@ -735,13 +777,36 @@ a {
   stroke-width: 7;
 }
 
+.mascot-route {
+  stroke: var(--gold);
+  stroke-width: 5;
+}
+
 .mascot-coin {
   fill: var(--gold);
+}
+
+.mascot-coin-one {
+  animation: mascot-coin 3.8s ease-in-out infinite;
+}
+
+.mascot-coin-two {
+  animation: mascot-coin 3.8s ease-in-out 420ms infinite;
 }
 
 .mascot-yen {
   stroke: #fff7df;
   stroke-width: 4;
+}
+
+.mascot-spark {
+  fill: #fff7df;
+  opacity: 0.78;
+  transform-origin: center;
+}
+
+.mascot-widget.is-excited .mascot-spark {
+  animation: mascot-spark 460ms ease;
 }
 
 @keyframes mascot-float {
@@ -755,6 +820,21 @@ a {
   }
 }
 
+@keyframes mascot-hop {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  35% {
+    transform: translateY(-13px) rotate(-4deg);
+  }
+
+  70% {
+    transform: translateY(2px) rotate(3deg);
+  }
+}
+
 @keyframes mascot-blink {
   0%,
   46%,
@@ -765,6 +845,34 @@ a {
 
   48% {
     transform: scaleY(0.12);
+  }
+}
+
+@keyframes mascot-coin {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes mascot-spark {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.72) rotate(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.22) rotate(16deg);
+  }
+
+  100% {
+    opacity: 0.78;
+    transform: scale(1) rotate(0);
   }
 }
 
@@ -1088,7 +1196,11 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .mascot-button,
-  .mascot-eye {
+  .mascot-eye,
+  .mascot-coin-one,
+  .mascot-coin-two,
+  .mascot-widget.is-excited .mascot-button,
+  .mascot-widget.is-excited .mascot-spark {
     animation: none;
   }
 }

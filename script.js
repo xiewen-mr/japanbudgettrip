@@ -151,29 +151,47 @@ const mascotToggle = document.querySelector("#mascot-toggle");
 const mascotCard = document.querySelector("#mascot-card");
 const mascotTip = document.querySelector("#mascot-tip");
 const mascotNext = document.querySelector("#mascot-next");
+const mascotMood = document.querySelector("#mascot-mood");
+const mascotWidget = document.querySelector(".mascot-widget");
 
 const mascotTips = [
-  "Compare airport trains before booking a taxi. The simplest route is often not the most expensive one.",
-  "Stay near a useful station, not only the cheapest room. Long transfers can quietly cost time and money.",
-  "The nationwide JR Pass is not automatic value in 2026. Price your exact train legs first.",
-  "Book Tokyo hotels early for cherry blossom, autumn leaves, and holiday weeks. Waiting can erase budget gains.",
-  "For solo travelers, eSIM is usually easier than pocket WiFi. Groups may still save by sharing one device.",
-  "Plan one paid highlight per day. Free neighborhoods, markets, parks, and viewpoints can carry the rest."
+  { mood: "Airport save", text: "Compare airport trains before booking a taxi. The simplest route is often not the most expensive one." },
+  { mood: "Hotel sense", text: "Stay near a useful station, not only the cheapest room. Long transfers can quietly cost time and money." },
+  { mood: "Pass check", text: "The nationwide JR Pass is not automatic value in 2026. Price your exact train legs first." },
+  { mood: "Book early", text: "Book Tokyo hotels early for cherry blossom, autumn leaves, and holiday weeks. Waiting can erase budget gains." },
+  { mood: "Data pick", text: "For solo travelers, eSIM is usually easier than pocket WiFi. Groups may still save by sharing one device." },
+  { mood: "Fun balance", text: "Plan one paid highlight per day. Free neighborhoods, markets, parks, and viewpoints can carry the rest." }
 ];
 
 function initMascot() {
-  if (!mascotToggle || !mascotCard || !mascotTip || !mascotNext) return;
+  if (!mascotToggle || !mascotCard || !mascotTip || !mascotNext || !mascotMood || !mascotWidget) return;
 
   let tipIndex = 0;
+  let excitementTimer;
 
   function setTip(nextIndex) {
     tipIndex = nextIndex % mascotTips.length;
-    mascotTip.textContent = mascotTips[tipIndex];
+    mascotTip.textContent = mascotTips[tipIndex].text;
+    mascotMood.textContent = mascotTips[tipIndex].mood;
+  }
+
+  function excite() {
+    mascotWidget.classList.remove("is-excited");
+    window.clearTimeout(excitementTimer);
+    window.requestAnimationFrame(() => {
+      mascotWidget.classList.add("is-excited");
+      excitementTimer = window.setTimeout(() => mascotWidget.classList.remove("is-excited"), 520);
+    });
   }
 
   function setOpen(isOpen) {
     mascotCard.hidden = !isOpen;
     mascotToggle.setAttribute("aria-expanded", String(isOpen));
+    mascotWidget.classList.toggle("is-open", isOpen);
+    if (isOpen) {
+      setTip(tipIndex + 1);
+      excite();
+    }
   }
 
   mascotToggle.addEventListener("click", () => {
@@ -182,6 +200,7 @@ function initMascot() {
 
   mascotNext.addEventListener("click", () => {
     setTip(tipIndex + 1);
+    excite();
   });
 
   document.addEventListener("keydown", (event) => {
