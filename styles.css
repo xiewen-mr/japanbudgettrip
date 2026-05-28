@@ -760,6 +760,33 @@ a {
   color: rgba(255, 255, 255, 0.82);
 }
 
+.related-guides {
+  margin-top: 32px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.related-guides strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--teal-dark);
+  font-size: 20px;
+}
+
+.related-guides a {
+  display: block;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--teal);
+  font-size: 17px;
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.related-guides a:hover {
+  color: var(--red);
+}
+
 @media (max-width: 860px) {
   .site-header {
     position: static;
