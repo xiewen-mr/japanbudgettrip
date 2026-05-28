@@ -147,17 +147,43 @@
         </form>
       </section>
 
+      <section class="section trip-quiz-section" id="trip-style-quiz">
+        <div class="section-header">
+          <p class="eyebrow">Trip style quiz</p>
+          <h2>Find the Japan route that fits your travel style.</h2>
+          <p>Answer five quick questions and get a practical route type with the guide to read next.</p>
+        </div>
+
+        <div class="challenge trip-quiz" id="trip-quiz">
+          <div class="challenge-panel">
+            <div class="challenge-status">
+              <span id="quiz-step">Question 1 of 5</span>
+              <strong id="quiz-progress">0 picked</strong>
+            </div>
+            <h3 id="quiz-title">How many days do you have?</h3>
+            <p id="quiz-copy">Pick the answer closest to your current plan.</p>
+            <div class="challenge-options" id="quiz-options"></div>
+          </div>
+          <aside class="challenge-result quiz-result" aria-live="polite">
+            <span class="result-label">Your route type</span>
+            <strong id="quiz-result-title">Not set yet</strong>
+            <p id="quiz-result-copy">Your result will appear after the final question.</p>
+            <a class="button primary" id="quiz-result-link" href="/guides/first-japan-trip-checklist">Read the Matching Guide</a>
+          </aside>
+        </div>
+      </section>
+
       <section class="section challenge-section" id="challenge">
         <div class="section-header">
           <p class="eyebrow">Mini game</p>
           <h2>Japan budget challenge</h2>
-          <p>Make three planning choices and see whether your first Japan trip stays efficient, comfortable, or expensive.</p>
+          <p>Make five planning choices and see whether your first Japan trip stays efficient, comfortable, or expensive.</p>
         </div>
 
         <div class="challenge" id="budget-challenge">
           <div class="challenge-panel">
             <div class="challenge-status">
-              <span id="challenge-step">Decision 1 of 3</span>
+              <span id="challenge-step">Decision 1 of 5</span>
               <strong id="challenge-score">0 pts</strong>
             </div>
             <h3 id="challenge-title">Pick your first arrival move.</h3>
@@ -282,12 +308,12 @@
     <aside class="mascot-widget" aria-label="Japan budget trip helper">
       <div class="mascot-card" id="mascot-card" hidden>
         <div class="mascot-card-top">
-          <span class="mascot-kicker">Budget Daruma</span>
+          <span class="mascot-kicker">Budget Omikuji</span>
           <span class="mascot-mood" id="mascot-mood">Ready</span>
         </div>
         <p id="mascot-tip">Compare airport trains before booking a taxi. The simplest route is often not the most expensive one.</p>
         <div class="mascot-actions">
-          <button class="mascot-secondary" type="button" id="mascot-next">Another tip</button>
+          <button class="mascot-secondary" type="button" id="mascot-next">Draw again</button>
           <a class="mascot-primary" href="#calculator">Plan budget</a>
         </div>
       </div>
