@@ -410,6 +410,22 @@ a {
   border-color: var(--teal);
 }
 
+.directory-hero h1 {
+  max-width: 1040px;
+}
+
+.directory-intro {
+  max-width: 760px;
+  margin: 24px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.guide-directory {
+  padding-top: clamp(38px, 6vw, 76px);
+}
+
 .guide-card.upcoming {
   padding-top: 8px;
   background: rgba(255, 255, 255, 0.62);
