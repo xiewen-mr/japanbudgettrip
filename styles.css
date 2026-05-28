@@ -802,8 +802,7 @@ a {
 
 .mascot-handle,
 .mascot-smile,
-.mascot-brow,
-.mascot-belly-route {
+.mascot-brow {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -836,19 +835,33 @@ a {
   stroke-width: 5;
 }
 
-.mascot-belly-route {
-  stroke: var(--teal-dark);
-  stroke-width: 4;
-}
-
-.mascot-belly-coin {
-  fill: var(--gold);
-  stroke: #fff7df;
-  stroke-width: 5;
-}
-
-.mascot-route-dot {
+.mascot-fuji {
   fill: #fff7df;
+  stroke: rgba(20, 59, 66, 0.16);
+  stroke-width: 2;
+}
+
+.mascot-fuji-snow {
+  fill: var(--white);
+}
+
+.mascot-coin {
+  fill: var(--gold);
+  animation: mascot-coin 3.8s ease-in-out infinite;
+}
+
+.mascot-coin-two {
+  animation-delay: 420ms;
+}
+
+.mascot-spark {
+  fill: #fff7df;
+  opacity: 0.78;
+  transform-origin: center;
+}
+
+.mascot-widget.is-excited .mascot-spark {
+  animation: mascot-spark 460ms ease;
 }
 
 @keyframes mascot-float {
@@ -887,6 +900,34 @@ a {
 
   48% {
     transform: scaleY(0.12);
+  }
+}
+
+@keyframes mascot-coin {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes mascot-spark {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.72) rotate(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.18) rotate(14deg);
+  }
+
+  100% {
+    opacity: 0.78;
+    transform: scale(1) rotate(0);
   }
 }
 
@@ -1213,7 +1254,9 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .mascot-button,
   .mascot-eye,
-  .mascot-widget.is-excited .mascot-button {
+  .mascot-coin,
+  .mascot-widget.is-excited .mascot-button,
+  .mascot-widget.is-excited .mascot-spark {
     animation: none;
   }
 }
