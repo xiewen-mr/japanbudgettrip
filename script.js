@@ -146,3 +146,49 @@ function initChallenge() {
 }
 
 initChallenge();
+
+const mascotToggle = document.querySelector("#mascot-toggle");
+const mascotCard = document.querySelector("#mascot-card");
+const mascotTip = document.querySelector("#mascot-tip");
+const mascotNext = document.querySelector("#mascot-next");
+
+const mascotTips = [
+  "Compare airport trains before booking a taxi. The simplest route is often not the most expensive one.",
+  "Stay near a useful station, not only the cheapest room. Long transfers can quietly cost time and money.",
+  "The nationwide JR Pass is not automatic value in 2026. Price your exact train legs first.",
+  "Book Tokyo hotels early for cherry blossom, autumn leaves, and holiday weeks. Waiting can erase budget gains.",
+  "For solo travelers, eSIM is usually easier than pocket WiFi. Groups may still save by sharing one device.",
+  "Plan one paid highlight per day. Free neighborhoods, markets, parks, and viewpoints can carry the rest."
+];
+
+function initMascot() {
+  if (!mascotToggle || !mascotCard || !mascotTip || !mascotNext) return;
+
+  let tipIndex = 0;
+
+  function setTip(nextIndex) {
+    tipIndex = nextIndex % mascotTips.length;
+    mascotTip.textContent = mascotTips[tipIndex];
+  }
+
+  function setOpen(isOpen) {
+    mascotCard.hidden = !isOpen;
+    mascotToggle.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  mascotToggle.addEventListener("click", () => {
+    setOpen(mascotCard.hidden);
+  });
+
+  mascotNext.addEventListener("click", () => {
+    setTip(tipIndex + 1);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
+  setTip(Math.floor(Math.random() * mascotTips.length));
+}
+
+initMascot();
