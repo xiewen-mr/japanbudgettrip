@@ -1,0 +1,19 @@
+{
+  "name": "Japan Budget Trip",
+  "short_name": "JBT",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#163b43",
+  "background_color": "#fbfaf5",
+  "display": "standalone"
+}

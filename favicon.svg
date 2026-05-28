@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Japan Budget Trip icon">
+  <rect width="64" height="64" rx="14" fill="#163b43"/>
+  <circle cx="45" cy="18" r="8" fill="#e15b45"/>
+  <path d="M7 48 24 22l9 14 7-11 17 23H7Z" fill="#f8f3df"/>
+  <path d="M24 22 15 36l9-5 9 5-9-14Z" fill="#ffffff"/>
+  <path d="M40 25 31 39l9-6 9 6-9-14Z" fill="#ffffff"/>
+  <path d="M11 50c9-6 17-7 25-2 6 4 12 4 17 0" fill="none" stroke="#e3b44d" stroke-width="4" stroke-linecap="round"/>
+</svg>
