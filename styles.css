@@ -77,6 +77,31 @@ a {
   color: var(--ink);
 }
 
+.language-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+}
+
+.language-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 999px;
+  padding: 0 9px;
+  color: var(--teal-dark);
+  background: rgba(255, 255, 255, 0.54);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.language-links a:hover {
+  border-color: var(--teal);
+}
+
 .hero {
   position: relative;
   min-height: min(760px, calc(100vh - 56px));
