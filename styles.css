@@ -745,8 +745,8 @@ a {
 }
 
 .mascot-button {
-  width: 106px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -796,26 +796,22 @@ a {
 .mascot-suitcase {
   fill: var(--teal);
   stroke: var(--teal-dark);
-  stroke-width: 5;
+  stroke-width: 4;
   stroke-linejoin: round;
 }
 
 .mascot-handle,
-.mascot-sticker,
-.mascot-wave,
 .mascot-smile,
 .mascot-brow,
-.mascot-belly-route,
-.mascot-yen {
+.mascot-belly-route {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.mascot-handle,
-.mascot-sticker {
+.mascot-handle {
   stroke: var(--teal-dark);
-  stroke-width: 5;
+  stroke-width: 4;
 }
 
 .mascot-wheel {
@@ -826,13 +822,6 @@ a {
   fill: #fff7df;
   stroke: var(--red);
   stroke-width: 4;
-  stroke-linejoin: round;
-}
-
-.mascot-wave {
-  stroke: var(--gold);
-  stroke-width: 4;
-  opacity: 0.85;
 }
 
 .mascot-eye {
@@ -847,69 +836,19 @@ a {
   stroke-width: 5;
 }
 
-.mascot-belly-fill {
-  fill: #fff7df;
-  stroke: rgba(20, 59, 66, 0.16);
-  stroke-width: 2;
-}
-
-.mascot-map {
-  fill: rgba(201, 154, 66, 0.72);
-}
-
 .mascot-belly-route {
-  stroke: var(--gold);
+  stroke: var(--teal-dark);
   stroke-width: 4;
-  stroke-dasharray: 6 6;
-}
-
-.mascot-pin {
-  fill: var(--red);
-}
-
-.mascot-pin-dot {
-  fill: #fff7df;
 }
 
 .mascot-belly-coin {
   fill: var(--gold);
-  stroke: rgba(20, 59, 66, 0.18);
-  stroke-width: 2;
-}
-
-.mascot-belly-yen {
-  fill: none;
   stroke: #fff7df;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-width: 5;
 }
 
-.mascot-coin {
-  fill: var(--gold);
-}
-
-.mascot-coin-one {
-  animation: mascot-coin 3.8s ease-in-out infinite;
-}
-
-.mascot-coin-two {
-  animation: mascot-coin 3.8s ease-in-out 420ms infinite;
-}
-
-.mascot-yen {
-  stroke: #fff7df;
-  stroke-width: 4;
-}
-
-.mascot-spark {
+.mascot-route-dot {
   fill: #fff7df;
-  opacity: 0.78;
-  transform-origin: center;
-}
-
-.mascot-widget.is-excited .mascot-spark {
-  animation: mascot-spark 460ms ease;
 }
 
 @keyframes mascot-float {
@@ -951,33 +890,6 @@ a {
   }
 }
 
-@keyframes mascot-coin {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes mascot-spark {
-  0% {
-    opacity: 0.35;
-    transform: scale(0.72) rotate(0);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.22) rotate(16deg);
-  }
-
-  100% {
-    opacity: 0.78;
-    transform: scale(1) rotate(0);
-  }
-}
 
 .page-main {
   background: var(--paper);
@@ -1301,10 +1213,7 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .mascot-button,
   .mascot-eye,
-  .mascot-coin-one,
-  .mascot-coin-two,
-  .mascot-widget.is-excited .mascot-button,
-  .mascot-widget.is-excited .mascot-spark {
+  .mascot-widget.is-excited .mascot-button {
     animation: none;
   }
 }
