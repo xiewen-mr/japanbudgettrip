@@ -805,8 +805,7 @@ a {
 .mascot-wave,
 .mascot-smile,
 .mascot-brow,
-.mascot-belly,
-.mascot-route,
+.mascot-belly-route,
 .mascot-yen {
   fill: none;
   stroke-linecap: round;
@@ -848,14 +847,42 @@ a {
   stroke-width: 5;
 }
 
-.mascot-belly {
-  stroke: #fff7df;
-  stroke-width: 7;
+.mascot-belly-fill {
+  fill: #fff7df;
+  stroke: rgba(20, 59, 66, 0.16);
+  stroke-width: 2;
 }
 
-.mascot-route {
+.mascot-map {
+  fill: rgba(201, 154, 66, 0.72);
+}
+
+.mascot-belly-route {
   stroke: var(--gold);
-  stroke-width: 5;
+  stroke-width: 4;
+  stroke-dasharray: 6 6;
+}
+
+.mascot-pin {
+  fill: var(--red);
+}
+
+.mascot-pin-dot {
+  fill: #fff7df;
+}
+
+.mascot-belly-coin {
+  fill: var(--gold);
+  stroke: rgba(20, 59, 66, 0.18);
+  stroke-width: 2;
+}
+
+.mascot-belly-yen {
+  fill: none;
+  stroke: #fff7df;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .mascot-coin {
