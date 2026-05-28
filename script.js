@@ -23,10 +23,11 @@ function formatUsd(value) {
 }
 
 function updateBudget() {
-  const days = Math.max(1, Number(form.days.value) || 1);
-  const travelers = Math.max(1, Number(form.travelers.value) || 1);
-  const dailyRate = styleRates[form.style.value] || styleRates.comfort;
-  const transferCost = cityCosts[form.cities.value] || cityCosts.two;
+  const fields = form.elements;
+  const days = Math.max(1, Number(fields.days.value) || 1);
+  const travelers = Math.max(1, Number(fields.travelers.value) || 1);
+  const dailyRate = styleRates[fields.style.value] || styleRates.comfort;
+  const transferCost = cityCosts[fields.cities.value] || cityCosts.two;
   const total = days * travelers * dailyRate + travelers * transferCost;
 
   totalEl.textContent = formatUsd(total);
@@ -86,6 +87,8 @@ function initChallenge() {
   const linkEl = document.querySelector("#challenge-link");
   let roundIndex = 0;
   let score = 0;
+
+  if (!stepEl || !scoreEl || !titleEl || !copyEl || !optionsEl || !gradeEl || !feedbackEl || !linkEl) return;
 
   function gradeForScore(value) {
     if (value >= 8) return "Efficient";
