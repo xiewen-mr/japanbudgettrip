@@ -545,6 +545,50 @@ a {
   border-color: var(--teal);
 }
 
+.guide-clusters {
+  display: grid;
+  gap: clamp(24px, 4vw, 38px);
+}
+
+.guide-cluster {
+  display: grid;
+  gap: 16px;
+}
+
+.guide-cluster-header {
+  display: grid;
+  gap: 6px;
+  max-width: 760px;
+}
+
+.guide-cluster-header h3 {
+  color: var(--teal-dark);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.12;
+}
+
+.guide-cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.guide-cluster-grid.featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.resources-card {
+  min-height: 220px;
+  padding-top: 18px;
+  background:
+    linear-gradient(135deg, rgba(214, 67, 53, 0.08), rgba(22, 59, 67, 0.04)),
+    var(--white);
+}
+
+.resources-card span {
+  margin-top: 0;
+}
+
 .directory-hero h1 {
   max-width: 1040px;
 }
@@ -555,6 +599,10 @@ a {
   color: rgba(255, 255, 255, 0.82);
   font-size: 20px;
   line-height: 1.6;
+}
+
+.resource-note {
+  color: var(--muted);
 }
 
 .guide-directory {
@@ -1372,6 +1420,8 @@ a {
   .stats-band,
   .cost-grid,
   .guide-grid,
+  .guide-cluster-grid,
+  .guide-cluster-grid.featured,
   .daruma-picks,
   .split,
   .challenge,
