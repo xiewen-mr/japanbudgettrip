@@ -183,10 +183,8 @@ a {
 
 .hero-planner {
   display: grid;
-  grid-template-columns: minmax(220px, 0.58fr) minmax(220px, 0.42fr) minmax(360px, 1fr);
-  align-items: center;
-  gap: 14px;
-  max-width: 1040px;
+  gap: 12px;
+  width: min(720px, 100%);
   padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
@@ -202,7 +200,6 @@ a {
 }
 
 .hero-planner-top span,
-.hero-planner-estimate span,
 .hero-planner-links span {
   color: var(--gold);
   font-size: 12px;
@@ -212,43 +209,27 @@ a {
 
 .hero-planner-top strong {
   color: var(--white);
-  font-size: clamp(18px, 2vw, 23px);
+  font-size: clamp(18px, 2vw, 22px);
   line-height: 1.14;
 }
 
-.hero-planner-estimate {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 2px 12px;
-  padding: 12px 14px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.hero-planner-estimate strong {
-  grid-row: span 2;
-  color: var(--white);
-  font-size: clamp(32px, 4vw, 44px);
-  line-height: 0.95;
-}
-
-.hero-planner-estimate small {
+.hero-planner-top small {
   color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
+  line-height: 1.35;
 }
 
 .hero-planner-links {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
 .hero-planner-links a {
   display: grid;
   gap: 3px;
-  min-width: 142px;
-  padding: 10px 12px;
+  min-height: 74px;
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -1831,8 +1812,8 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .hero-planner-links a {
-    flex: 1 1 180px;
+  .hero-planner-links {
+    grid-template-columns: 1fr;
   }
 
   .stats-band,
@@ -1902,14 +1883,6 @@ a {
 
   .hero-planner {
     padding: 18px;
-  }
-
-  .hero-planner-estimate {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-planner-estimate strong {
-    grid-row: auto;
   }
 
   .calculator {
