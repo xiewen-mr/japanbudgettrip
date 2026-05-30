@@ -1,0 +1,30 @@
+{
+  "lastChecked": "2026-05-30",
+  "currency": "JPY",
+  "prices": [
+    {
+      "name": "Japan Rail Pass ordinary 7-day",
+      "priceJpy": 50000,
+      "sourceKey": "official-jr-pass-prices",
+      "note": "Check the official site before buying because JR Pass pricing and purchase rules can change."
+    },
+    {
+      "name": "Keisei Skyliner Narita Airport to Nippori/Ueno",
+      "priceJpy": 2465,
+      "sourceKey": "keisei-skyliner-fares",
+      "note": "IC-card and ticketed fares can differ. Confirm your airport terminal and destination."
+    },
+    {
+      "name": "Typical Tokyo local transit day",
+      "priceJpyRange": { "min": 600, "max": 1400 },
+      "sourceKey": "tokyo-transport-official",
+      "note": "A normal city day depends on route count, rail operators, and whether a day pass fits."
+    },
+    {
+      "name": "Airport bus or limousine bus",
+      "priceJpyRange": { "min": 1000, "max": 3600 },
+      "sourceKey": "narita-airport-access",
+      "note": "Bus fares vary by destination, operator, and airport. Check the operator schedule and final stop."
+    }
+  ]
+}

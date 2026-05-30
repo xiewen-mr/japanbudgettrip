@@ -1,0 +1,28 @@
+{
+  "lastChecked": "2026-05-30",
+  "currency": "JPY",
+  "notes": [
+    "Benchmarks are planning ranges, not live quotes.",
+    "International flights are excluded.",
+    "Hotel ranges vary heavily by season, neighborhood, room type, and cancellation policy."
+  ],
+  "dailyTripCostsUsd": {
+    "budget": { "min": 65, "max": 95 },
+    "comfort": { "min": 100, "max": 145 },
+    "midrange": { "min": 150, "max": 220 }
+  },
+  "foodDailyUsd": {
+    "budget": { "min": 18, "max": 30 },
+    "comfort": { "min": 35, "max": 55 },
+    "midrange": { "min": 60, "max": 95 }
+  },
+  "hotelNightlyUsd": {
+    "budget": { "min": 45, "max": 85 },
+    "comfort": { "min": 90, "max": 160 },
+    "midrange": { "min": 170, "max": 300 }
+  },
+  "localTransportDailyUsd": {
+    "majorCity": { "min": 4, "max": 9 },
+    "busySightseeingDay": { "min": 8, "max": 18 }
+  }
+}

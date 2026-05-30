@@ -1,0 +1,30 @@
+{
+  "lastChecked": "2026-05-30",
+  "sources": {
+    "official-jr-pass-prices": {
+      "name": "JAPAN RAIL PASS official prices",
+      "url": "https://japanrailpass.net/en/purchase/price/",
+      "usedFor": ["JR Pass benchmark", "rail pass decision checks"]
+    },
+    "jnto-statistics": {
+      "name": "Japan National Tourism Organization visitor statistics",
+      "url": "https://www.jnto.go.jp/statistics/eng/visitors/",
+      "usedFor": ["visitor trend context", "crowd planning"]
+    },
+    "narita-airport-access": {
+      "name": "Narita International Airport access information",
+      "url": "https://www.narita-airport.jp/en/access/",
+      "usedFor": ["airport train and bus planning", "arrival-day transfer checks"]
+    },
+    "keisei-skyliner-fares": {
+      "name": "Keisei Skyliner fares",
+      "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/traffic/skyliner_fares.php",
+      "usedFor": ["Narita to Tokyo rail benchmark"]
+    },
+    "tokyo-transport-official": {
+      "name": "Official Tokyo transport information",
+      "url": "https://www.gotokyo.org/en/plan/getting-around/index.html",
+      "usedFor": ["local transit planning", "city route checks"]
+    }
+  }
+}
