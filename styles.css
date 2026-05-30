@@ -795,6 +795,41 @@ a {
   line-height: 1.55;
 }
 
+.decision-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 28px;
+}
+
+.decision-list article {
+  padding: 18px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.decision-list span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 840;
+  text-transform: uppercase;
+}
+
+.decision-list strong {
+  display: block;
+  margin: 8px 0;
+  color: var(--teal-dark);
+  font-size: 20px;
+  line-height: 1.18;
+}
+
+.decision-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .guide-directory {
   padding-top: clamp(38px, 6vw, 76px);
 }
@@ -1711,6 +1746,7 @@ a {
   .guide-cluster-grid.featured,
   .path-grid,
   .checklist-grid,
+  .decision-list,
   .daruma-picks,
   .split,
   .challenge,
