@@ -1446,6 +1446,11 @@ a {
   border-bottom: 0;
 }
 
+.city-zone-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 20px 0 32px;
+}
+
 .visual-break {
   margin: 28px 0 34px;
   padding: clamp(18px, 4vw, 26px);
@@ -1816,6 +1821,7 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .city-zone-grid,
   .stats-band,
   .cost-grid,
   .guide-grid,
