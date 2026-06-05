@@ -414,6 +414,119 @@ a {
   white-space: nowrap;
 }
 
+.coverage-map-section {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  background: var(--paper);
+}
+
+.coverage-map-copy p:not(.eyebrow) {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.coverage-map-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(240px, 0.55fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.japan-map,
+.coverage-links,
+.region-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.japan-map {
+  display: grid;
+  place-items: center;
+  min-height: 430px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.japan-map svg {
+  width: min(100%, 420px);
+  height: auto;
+}
+
+.map-land {
+  fill: #dfe9e4;
+  stroke: rgba(20, 59, 66, 0.22);
+  stroke-width: 2;
+}
+
+.map-route {
+  fill: none;
+  stroke: var(--red);
+  stroke-dasharray: 0.06 0.035;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.map-pin {
+  fill: var(--red);
+  stroke: var(--white);
+  stroke-width: 4;
+}
+
+.map-pin.secondary {
+  fill: var(--gold);
+}
+
+.map-label {
+  fill: var(--teal-dark);
+  font-size: 18px;
+  font-weight: 820;
+}
+
+.japan-map a:hover .map-pin,
+.japan-map a:focus .map-pin {
+  fill: var(--teal);
+}
+
+.coverage-links {
+  display: grid;
+  align-content: stretch;
+  overflow: hidden;
+}
+
+.coverage-links a {
+  display: grid;
+  gap: 5px;
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.coverage-links a:last-child {
+  border-bottom: 0;
+}
+
+.coverage-links a:hover {
+  background: var(--soft);
+}
+
+.coverage-links span,
+.region-card span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.coverage-links strong {
+  color: var(--teal-dark);
+  font-size: 18px;
+  line-height: 1.22;
+}
+
 .card-kicker {
   color: var(--red);
   font-size: 13px;
@@ -796,6 +909,60 @@ a {
 }
 
 .resource-sequence {
+  background: var(--white);
+}
+
+.region-browser {
+  padding-top: clamp(34px, 5vw, 62px);
+  padding-bottom: clamp(34px, 5vw, 62px);
+  background: var(--soft);
+}
+
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.region-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-height: 260px;
+  padding: 20px;
+}
+
+.region-card.wide {
+  grid-column: span 2;
+}
+
+.region-card strong {
+  color: var(--teal-dark);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.region-card div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region-card a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: var(--paper);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.region-card a:hover {
+  border-color: var(--teal);
   background: var(--white);
 }
 
@@ -1823,18 +1990,25 @@ a {
 
   .city-zone-grid,
   .stats-band,
+  .coverage-map-section,
+  .coverage-map-shell,
   .cost-grid,
   .guide-grid,
   .guide-cluster-grid,
   .guide-cluster-grid.featured,
   .path-grid,
   .checklist-grid,
+  .region-grid,
   .decision-list,
   .daruma-picks,
   .split,
   .challenge,
   .route {
     grid-template-columns: 1fr;
+  }
+
+  .region-card.wide {
+    grid-column: auto;
   }
 
   .section-header.compact {
@@ -1889,6 +2063,16 @@ a {
 
   .hero-planner {
     padding: 18px;
+  }
+
+  .japan-map {
+    min-height: 340px;
+    padding: 12px;
+  }
+
+  .coverage-links a,
+  .region-card {
+    padding: 16px;
   }
 
   .calculator {
