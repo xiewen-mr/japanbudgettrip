@@ -104,34 +104,53 @@
         </div>
         <div class="coverage-map-shell">
           <div class="japan-map" aria-label="Japan Budget Trip coverage map">
-            <svg viewBox="0 0 420 520" role="img" aria-labelledby="japan-map-title japan-map-desc">
+            <svg viewBox="0 0 460 540" role="img" aria-labelledby="japan-map-title japan-map-desc">
               <title id="japan-map-title">Japan Budget Trip coverage regions</title>
               <desc id="japan-map-desc">A simplified Japan route map linking Tokyo, Mount Fuji, Kyoto, Osaka, and Kansai Airport guides.</desc>
-              <path class="map-land map-hokkaido" d="M262 48c29-19 69-12 85 14 14 23 5 54-22 69-24 14-64 9-79-15-16-25-8-49 16-68Z"></path>
-              <path class="map-land map-honshu" d="M258 139c30 10 41 35 29 62-11 25-42 41-50 69-7 26 16 45 4 70-12 27-49 29-65 52-12 17-6 42-25 54-19 13-49 2-56-20-8-24 14-44 31-60 22-20 27-44 17-72-9-25 3-54 29-69 24-14 36-38 42-63 6-27 24-50 44-63Z"></path>
-              <path class="map-land map-shikoku" d="M132 410c29-11 66-2 78 17 9 15-5 31-35 35-31 4-62-11-66-29-2-10 6-19 23-23Z"></path>
-              <path class="map-land map-kyushu" d="M84 432c29 2 47 22 43 49-4 26-31 45-60 37-28-8-39-36-24-59 9-15 23-25 41-27Z"></path>
-              <path class="map-route" d="M250 284 C229 304 206 326 180 351 C164 366 151 381 139 402" pathLength="1"></path>
-              <path class="map-route" d="M180 351 C169 368 156 386 139 402" pathLength="1"></path>
+              <rect class="map-water" x="0" y="0" width="460" height="540" rx="18"></rect>
+              <path class="map-grid" d="M72 0v540M144 0v540M216 0v540M288 0v540M360 0v540M432 0v540M0 78h460M0 156h460M0 234h460M0 312h460M0 390h460M0 468h460"></path>
+              <text class="map-ocean-label" x="38" y="58">Sea of Japan</text>
+              <text class="map-ocean-label east" x="318" y="218">Pacific Ocean</text>
+              <path class="map-land map-hokkaido" d="M278 46c19-21 51-29 78-19 28 11 45 39 39 68-6 31-34 51-70 54-30 2-59-10-71-34-12-25 2-49 24-69Z"></path>
+              <path class="map-land map-honshu" d="M296 137c21 11 34 30 32 51-2 24-22 38-43 50-25 14-45 29-50 55-5 25 20 45 13 70-8 29-43 37-67 52-22 14-33 38-54 52-23 15-58 9-68-15-10-23 9-45 29-59 24-17 39-36 42-65 3-31-12-56-2-86 8-25 33-35 54-47 30-17 38-41 45-69 8-30 36-49 69-39Z"></path>
+              <path class="map-land map-shikoku" d="M133 407c27-12 68-5 88 13 13 12 10 28-8 38-25 14-71 10-94-7-19-15-14-33 14-44Z"></path>
+              <path class="map-land map-kyushu" d="M82 431c26-1 49 15 57 40 8 27-7 55-35 66-30 12-62-2-75-28-13-27-1-59 27-72 8-4 17-6 26-6Z"></path>
+              <path class="map-land map-okinawa" d="M74 505c8-4 19-2 25 4 5 6 2 15-7 18-10 4-22 1-27-6-4-6 0-12 9-16Z"></path>
+              <path class="map-route map-route-shadow" d="M268 284 C246 301 225 318 207 340 C190 361 173 378 151 399"></path>
+              <path class="map-route" d="M268 284 C246 301 225 318 207 340 C190 361 173 378 151 399"></path>
+              <path class="map-route map-route-shadow" d="M207 340 C190 366 172 385 151 399"></path>
+              <path class="map-route" d="M207 340 C190 366 172 385 151 399"></path>
+              <g class="map-legend" aria-hidden="true">
+                <rect x="244" y="454" width="166" height="48" rx="8"></rect>
+                <circle cx="264" cy="478" r="7"></circle>
+                <text x="280" y="483">Covered guide area</text>
+              </g>
               <a href="/guides/tokyo-city-guide-budget" aria-label="Tokyo city guide">
-                <circle class="map-pin" cx="250" cy="284" r="11"></circle>
-                <text class="map-label" x="268" y="289">Tokyo</text>
+                <circle class="map-pin" cx="268" cy="284" r="11"></circle>
+                <rect class="map-label-bg" x="284" y="266" width="64" height="28" rx="6"></rect>
+                <text class="map-label" x="296" y="286">Tokyo</text>
               </a>
               <a href="/guides/mount-fuji-day-trip-from-tokyo-budget" aria-label="Mount Fuji day trip guide">
-                <circle class="map-pin" cx="215" cy="319" r="11"></circle>
-                <text class="map-label" x="231" y="324">Fuji</text>
+                <path class="map-fuji" d="M198 332 215 303l10 15 7-9 18 23h-52Z"></path>
+                <path class="map-fuji-snow" d="M215 303 207 317l8-5 10 6-10-15Z"></path>
+                <circle class="map-pin" cx="207" cy="340" r="10"></circle>
+                <rect class="map-label-bg" x="222" y="325" width="50" height="28" rx="6"></rect>
+                <text class="map-label" x="234" y="345">Fuji</text>
               </a>
               <a href="/guides/kyoto-city-guide-budget" aria-label="Kyoto city guide">
-                <circle class="map-pin" cx="180" cy="351" r="11"></circle>
-                <text class="map-label" x="196" y="356">Kyoto</text>
+                <circle class="map-pin" cx="182" cy="374" r="11"></circle>
+                <rect class="map-label-bg" x="196" y="354" width="66" height="28" rx="6"></rect>
+                <text class="map-label" x="208" y="374">Kyoto</text>
               </a>
               <a href="/guides/osaka-city-guide-budget" aria-label="Osaka city guide">
-                <circle class="map-pin" cx="149" cy="386" r="11"></circle>
-                <text class="map-label" x="166" y="391">Osaka</text>
+                <circle class="map-pin" cx="151" cy="399" r="11"></circle>
+                <rect class="map-label-bg" x="166" y="382" width="66" height="28" rx="6"></rect>
+                <text class="map-label" x="178" y="402">Osaka</text>
               </a>
               <a href="/guides/kansai-airport-to-osaka-kyoto-transfer" aria-label="Kansai Airport transfer guide">
-                <circle class="map-pin secondary" cx="139" cy="402" r="9"></circle>
-                <text class="map-label" x="155" y="421">KIX</text>
+                <circle class="map-pin secondary" cx="136" cy="421" r="9"></circle>
+                <rect class="map-label-bg" x="151" y="408" width="44" height="26" rx="6"></rect>
+                <text class="map-label small" x="162" y="426">KIX</text>
               </a>
             </svg>
           </div>
