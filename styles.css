@@ -455,14 +455,70 @@ a {
     linear-gradient(145deg, rgba(29, 89, 96, 0.08), rgba(255, 255, 255, 0.72));
 }
 
-.japan-map img {
-  display: block;
+.coverage-image-wrap {
+  position: relative;
   width: 100%;
   max-width: 760px;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
-  object-fit: cover;
+  overflow: hidden;
   box-shadow: 0 18px 36px rgba(20, 59, 66, 0.12);
+}
+
+.japan-map img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-hotspot {
+  position: absolute;
+  display: block;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: 0;
+}
+
+.map-hotspot:hover,
+.map-hotspot:focus-visible {
+  border-color: rgba(180, 69, 61, 0.88);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.map-hotspot.tokyo {
+  left: 68%;
+  top: 45%;
+  width: 23%;
+  height: 13%;
+}
+
+.map-hotspot.fuji {
+  left: 55%;
+  top: 72%;
+  width: 22%;
+  height: 12%;
+}
+
+.map-hotspot.kyoto {
+  left: 37%;
+  top: 34%;
+  width: 15%;
+  height: 12%;
+}
+
+.map-hotspot.osaka {
+  left: 21%;
+  top: 45%;
+  width: 16%;
+  height: 13%;
+}
+
+.map-hotspot.kix {
+  left: 36%;
+  top: 77%;
+  width: 11%;
+  height: 13%;
 }
 
 .coverage-links {
