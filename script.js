@@ -493,15 +493,20 @@ function initRouteRemix() {
 
   const titleEl = document.querySelector("#route-remix-title-output");
   const badgeEl = document.querySelector("#route-remix-badge");
-  const copyEl = document.querySelector("#route-remix-copy");
+  const copyEl = document.querySelector("#route-remix-description");
   const daysEl = document.querySelector("#route-remix-days");
   const linksEl = document.querySelector("#route-remix-links");
+  const surpriseButton = document.querySelector("#route-remix-surprise");
+  const copyButton = document.querySelector("#route-remix-copy");
+  const statusEl = document.querySelector("#route-remix-status");
   const dayButtons = routeRemix.querySelectorAll("[data-remix-days]");
   const styleButtons = routeRemix.querySelectorAll("[data-remix-style]");
+  const dayOptions = ["5", "7", "10"];
+  const styleOptions = ["classic", "food", "slow"];
   let selectedDays = "7";
   let selectedStyle = "classic";
 
-  if (!titleEl || !badgeEl || !copyEl || !daysEl || !linksEl) return;
+  if (!titleEl || !badgeEl || !copyEl || !daysEl || !linksEl || !surpriseButton || !copyButton || !statusEl) return;
 
   function setActive(buttons, attr, value) {
     buttons.forEach((button) => {
@@ -545,11 +550,50 @@ function initRouteRemix() {
     });
   }
 
+  function currentRouteText() {
+    const plan = routeRemixPlans[`${selectedDays}-${selectedStyle}`];
+    if (!plan) return "";
+    const days = plan.days.map(([title, copy], index) => `Day ${index + 1}: ${title} - ${copy}`).join("\n");
+    const guides = plan.links.map(([label, href]) => `${label}: https://japanbudgettrip.com${href}`).join("\n");
+    return `Japan Budget Trip route remix\n${selectedDays} days - ${plan.title}\n${plan.copy}\n\n${days}\n\nGuides:\n${guides}`;
+  }
+
+  async function copyRoute() {
+    const text = currentRouteText();
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      statusEl.textContent = "Route copied. Paste it into your notes before booking.";
+    } catch {
+      statusEl.textContent = "Copy failed. Select the route text manually or try again.";
+    }
+  }
+
+  function surpriseRoute() {
+    const currentKey = `${selectedDays}-${selectedStyle}`;
+    let nextDays = selectedDays;
+    let nextStyle = selectedStyle;
+
+    while (`${nextDays}-${nextStyle}` === currentKey) {
+      nextDays = dayOptions[Math.floor(Math.random() * dayOptions.length)];
+      nextStyle = styleOptions[Math.floor(Math.random() * styleOptions.length)];
+    }
+
+    selectedDays = nextDays;
+    selectedStyle = nextStyle;
+    setActive(dayButtons, "data-remix-days", selectedDays);
+    setActive(styleButtons, "data-remix-style", selectedStyle);
+    renderPlan();
+    statusEl.textContent = "New route loaded. Adjust the days or style if it feels too rushed.";
+  }
+
   dayButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectedDays = button.dataset.remixDays;
       setActive(dayButtons, "data-remix-days", selectedDays);
       renderPlan();
+      statusEl.textContent = "Route updated. Copy it when the shape feels right.";
     });
   });
 
@@ -558,8 +602,12 @@ function initRouteRemix() {
       selectedStyle = button.dataset.remixStyle;
       setActive(styleButtons, "data-remix-style", selectedStyle);
       renderPlan();
+      statusEl.textContent = "Route updated. Compare the guide links before booking.";
     });
   });
+
+  surpriseButton.addEventListener("click", surpriseRoute);
+  copyButton.addEventListener("click", copyRoute);
 
   setActive(dayButtons, "data-remix-days", selectedDays);
   setActive(styleButtons, "data-remix-style", selectedStyle);

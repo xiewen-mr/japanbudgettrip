@@ -760,6 +760,45 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.route-remix-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.route-remix-actions button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--teal-dark);
+  background: var(--white);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.route-remix-actions button:first-child {
+  color: var(--white);
+  border-color: var(--red);
+  background: var(--red);
+}
+
+.route-remix-actions button:hover,
+.route-remix-actions button:focus-visible {
+  border-color: var(--teal);
+  outline: 2px solid rgba(201, 154, 66, 0.38);
+  outline-offset: 1px;
+}
+
+.route-remix-actions p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .route-remix-output {
   display: grid;
   grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
@@ -2320,6 +2359,10 @@ a {
   .segmented-control button {
     min-height: 40px;
     font-size: 14px;
+  }
+
+  .route-remix-actions {
+    grid-template-columns: 1fr;
   }
 
   .challenge-panel,
