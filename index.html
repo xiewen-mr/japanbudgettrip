@@ -42,6 +42,7 @@
       <nav class="nav-links" aria-label="Site sections">
         <a href="#costs">Costs</a>
         <a href="#itineraries">Itineraries</a>
+        <a href="#route-remix">Remix</a>
         <a href="#calculator">Calculator</a>
         <a href="#challenge">Challenge</a>
         <a href="/guides/">Guides</a>
@@ -149,6 +150,43 @@
             <strong>I am close to buying things</strong>
             <p>Compare internet, hotel areas, airport transfers, rail choices, insurance, and day trips.</p>
           </a>
+        </div>
+      </section>
+
+      <section class="section route-remix-section" id="route-remix" aria-labelledby="route-remix-title">
+        <div class="section-header">
+          <p class="eyebrow">Route remix</p>
+          <h2 id="route-remix-title">Build a first Japan route before opening ten tabs.</h2>
+          <p>Pick the trip length and mood, then start from the matching route skeleton and guide links.</p>
+        </div>
+        <div class="route-remix" id="route-remix-tool">
+          <div class="route-remix-controls" aria-label="Route remix controls">
+            <div class="segmented-field">
+              <span>Days</span>
+              <div class="segmented-control" role="group" aria-label="Trip length">
+                <button type="button" data-remix-days="5">5</button>
+                <button class="active" type="button" data-remix-days="7">7</button>
+                <button type="button" data-remix-days="10">10</button>
+              </div>
+            </div>
+            <div class="segmented-field">
+              <span>Style</span>
+              <div class="segmented-control style-control" role="group" aria-label="Trip style">
+                <button class="active" type="button" data-remix-style="classic">Classic</button>
+                <button type="button" data-remix-style="food">Food</button>
+                <button type="button" data-remix-style="slow">Slow</button>
+              </div>
+            </div>
+          </div>
+          <div class="route-remix-output" aria-live="polite">
+            <div class="route-ticket">
+              <span id="route-remix-badge">7 days</span>
+              <strong id="route-remix-title-output">Classic triangle</strong>
+              <p id="route-remix-copy">Tokyo, Kyoto, and Osaka with the fewest expensive detours.</p>
+            </div>
+            <ol class="route-remix-days" id="route-remix-days"></ol>
+            <div class="route-remix-links" id="route-remix-links" aria-label="Matching route guides"></div>
+          </div>
         </div>
       </section>
 

@@ -685,6 +685,198 @@ a {
   line-height: 1;
 }
 
+.route-remix-section {
+  background: var(--paper);
+}
+
+.route-remix {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.route-remix-controls,
+.route-remix-output {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.route-remix-controls {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  padding: clamp(18px, 3vw, 26px);
+}
+
+.segmented-field {
+  display: grid;
+  gap: 10px;
+}
+
+.segmented-field > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 780;
+  text-transform: uppercase;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.segmented-control button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-weight: 780;
+  cursor: pointer;
+}
+
+.segmented-control button:hover,
+.segmented-control button:focus-visible {
+  color: var(--teal-dark);
+  outline: 2px solid rgba(201, 154, 66, 0.42);
+  outline-offset: 1px;
+}
+
+.segmented-control button.active {
+  color: var(--white);
+  background: var(--teal-dark);
+  box-shadow: 0 8px 18px rgba(22, 59, 67, 0.16);
+}
+
+.style-control {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.route-remix-output {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+  gap: 0;
+  overflow: hidden;
+}
+
+.route-ticket {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  padding: clamp(22px, 4vw, 34px);
+  color: var(--white);
+  background:
+    linear-gradient(145deg, rgba(147, 42, 34, 0.92), rgba(22, 59, 67, 0.96)),
+    var(--teal-dark);
+}
+
+.route-ticket span {
+  width: fit-content;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.route-ticket strong {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+}
+
+.route-ticket p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.route-remix-days {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: clamp(18px, 3vw, 28px);
+  list-style: none;
+  counter-reset: remix-day;
+}
+
+.route-remix-days li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid rgba(22, 59, 67, 0.1);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.route-remix-days li::before {
+  counter-increment: remix-day;
+  content: counter(remix-day);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--red);
+  font-weight: 820;
+}
+
+.route-remix-days strong {
+  display: block;
+  color: var(--teal-dark);
+  line-height: 1.2;
+}
+
+.route-remix-days span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.route-remix-links {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border-top: 1px solid var(--line);
+  background: var(--line);
+}
+
+.route-remix-links a {
+  min-height: 74px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 16px;
+  color: var(--teal-dark);
+  background: var(--white);
+  font-weight: 800;
+}
+
+.route-remix-links a span {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.route-remix-links a:hover {
+  background: #fffaf0;
+}
+
 .challenge-section {
   background: var(--soft);
 }
@@ -2031,6 +2223,9 @@ a {
   .decision-list,
   .daruma-picks,
   .split,
+  .route-remix,
+  .route-remix-output,
+  .route-remix-links,
   .challenge,
   .route {
     grid-template-columns: 1fr;
@@ -2106,6 +2301,25 @@ a {
 
   .calculator {
     grid-template-columns: 1fr;
+  }
+
+  .route-remix-controls,
+  .route-ticket,
+  .route-remix-days {
+    padding: 18px;
+  }
+
+  .route-remix-days li {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .segmented-control {
+    gap: 4px;
+  }
+
+  .segmented-control button {
+    min-height: 40px;
+    font-size: 14px;
   }
 
   .challenge-panel,

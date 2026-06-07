@@ -318,6 +318,256 @@ function initQuiz() {
 
 initQuiz();
 
+const routeRemix = document.querySelector("#route-remix-tool");
+
+const routeRemixPlans = {
+  "5-classic": {
+    title: "Tokyo highlights",
+    copy: "One base, low friction, and one optional Fuji day if the weather cooperates.",
+    days: [
+      ["Arrive Tokyo", "Keep the first hotel transfer simple."],
+      ["Asakusa + Ueno", "Start with east-side classics and casual food."],
+      ["Shibuya + Shinjuku", "Save nightlife for a day without heavy luggage."],
+      ["Fuji or city buffer", "Choose Mount Fuji only with a clear forecast."],
+      ["Ginza or Tokyo Station", "Finish close to transport and shopping."]
+    ],
+    links: [
+      ["Tokyo 5-day route", "/guides/tokyo-5-day-budget-itinerary"],
+      ["Tokyo hotel base", "/guides/where-to-stay-in-tokyo-budget"],
+      ["Fuji day trip", "/guides/mount-fuji-day-trip-from-tokyo-budget"]
+    ]
+  },
+  "5-food": {
+    title: "Tokyo food base",
+    copy: "Stay in Tokyo, spend less on transfers, and make food neighborhoods the main event.",
+    days: [
+      ["Arrive + convenience reset", "Use the first night for food, not a hard transfer."],
+      ["Tsukiji + Ginza", "Pair markets, depachika, and station-area wandering."],
+      ["Asakusa + Ueno", "Mix older Tokyo with affordable casual meals."],
+      ["Shinjuku + Golden Gai area", "Plan late trains before dinner."],
+      ["Yanaka or Akihabara", "End with a lighter neighborhood day."]
+    ],
+    links: [
+      ["Tokyo city guide", "/guides/tokyo-city-guide-budget"],
+      ["Trip cost guide", "/guides/japan-trip-cost-2026"],
+      ["eSIM choices", "/guides/japan-esim-vs-pocket-wifi"]
+    ]
+  },
+  "5-slow": {
+    title: "Low-stress Tokyo",
+    copy: "One hotel, fewer paid attractions, and slower neighborhood days.",
+    days: [
+      ["Arrive Tokyo", "Pick a hotel area that works from the airport."],
+      ["Ueno + Yanaka", "Use parks, museums, and small streets."],
+      ["Asakusa + river", "Avoid peak temple hours where possible."],
+      ["Shinjuku Gyoen or west side", "Keep the day flexible around weather."],
+      ["Tokyo Station + airport route", "Finish near the next transport decision."]
+    ],
+    links: [
+      ["Crowd planning", "/guides/is-japan-too-crowded-2026"],
+      ["Tokyo hotels", "/guides/tokyo-hotel-area-comparison-budget"],
+      ["Airport transfers", "/guides/japan-airport-transfer-guide"]
+    ]
+  },
+  "7-classic": {
+    title: "Classic triangle",
+    copy: "Tokyo, Kyoto, and Osaka with the fewest expensive detours.",
+    days: [
+      ["Arrive Tokyo", "Sleep near a useful station."],
+      ["Tokyo east side", "Asakusa, Ueno, food, and simple trains."],
+      ["Tokyo west side", "Shibuya, Shinjuku, or one paid highlight."],
+      ["Move to Kyoto", "Use the transfer day for one compact Kyoto area."],
+      ["Kyoto temples", "Start early and group sights by zone."],
+      ["Osaka night", "Move south for food, Namba, and Dotonbori."],
+      ["Osaka or KIX", "Keep the final day close to your departure route."]
+    ],
+    links: [
+      ["7-day itinerary", "/guides/tokyo-kyoto-osaka-7-day-budget-itinerary"],
+      ["JR alternatives", "/guides/jr-pass-alternatives-2026"],
+      ["KIX transfer", "/guides/kansai-airport-to-osaka-kyoto-transfer"]
+    ]
+  },
+  "7-food": {
+    title: "Tokyo + Osaka food run",
+    copy: "Use Kyoto as a focused day or overnight, then give Osaka enough evening time.",
+    days: [
+      ["Tokyo arrival food", "Keep dinner near the hotel base."],
+      ["Tsukiji + Ginza", "Market morning and station food halls."],
+      ["Shinjuku or Ikebukuro", "Choose one late-night food zone."],
+      ["Kyoto transfer", "Nishiki, Gion, or one temple cluster."],
+      ["Kyoto morning", "Start early, then move to Osaka."],
+      ["Osaka Namba", "Dotonbori, Shinsekai, and casual food."],
+      ["Osaka Castle or Bay", "Finish with one non-food anchor."]
+    ],
+    links: [
+      ["Osaka 2-day route", "/guides/osaka-2-day-budget-itinerary"],
+      ["Kyoto 2-day route", "/guides/kyoto-2-day-budget-itinerary"],
+      ["Osaka hotels", "/guides/where-to-stay-in-osaka-budget"]
+    ]
+  },
+  "7-slow": {
+    title: "Tokyo + Kyoto calmer route",
+    copy: "Skip the urge to add every city and use Osaka only if it helps flights or food.",
+    days: [
+      ["Arrive Tokyo", "Choose a simple airport route."],
+      ["Ueno + Asakusa", "Stay east to reduce transfers."],
+      ["Fuji or Tokyo buffer", "Only chase Fuji if weather is strong."],
+      ["Move to Kyoto", "Keep the transfer day light."],
+      ["Higashiyama + Gion", "Start early and leave space."],
+      ["Arashiyama or Uji", "Pick one slower side trip."],
+      ["Kyoto Station or Osaka", "End near the next transport leg."]
+    ],
+    links: [
+      ["Kyoto 2-day route", "/guides/kyoto-2-day-budget-itinerary"],
+      ["Uji day trip", "/guides/uji-day-trip-from-kyoto-osaka-budget"],
+      ["Crowd planning", "/guides/is-japan-too-crowded-2026"]
+    ]
+  },
+  "10-classic": {
+    title: "Classic plus side trips",
+    copy: "The famous route with space for Fuji, Nara, or Himeji without turning every day into transit.",
+    days: [
+      ["Tokyo arrival", "Keep the first night simple."],
+      ["Tokyo east", "Asakusa, Ueno, and food."],
+      ["Tokyo west", "Shibuya, Shinjuku, or a paid highlight."],
+      ["Mount Fuji", "Weather-first day trip or overnight."],
+      ["Move to Kyoto", "Use a light transfer day."],
+      ["Kyoto temples", "Higashiyama and Gion."],
+      ["Arashiyama or Uji", "One west or tea-town day."],
+      ["Move to Osaka", "Namba and Dotonbori evening."],
+      ["Nara or Himeji", "Pick one strong Kansai day trip."],
+      ["Osaka + departure", "Finish close to KIX or rail."]
+    ],
+    links: [
+      ["First trip checklist", "/guides/first-japan-trip-checklist"],
+      ["Kansai day trips", "/guides/best-day-trips-from-kyoto-osaka-budget"],
+      ["Trip cost guide", "/guides/japan-trip-cost-2026"]
+    ]
+  },
+  "10-food": {
+    title: "Food + Kansai depth",
+    copy: "Give Osaka more than a token night and use side trips for variety.",
+    days: [
+      ["Tokyo arrival", "Stay near easy dinner options."],
+      ["Tsukiji + Ginza", "Market and food hall day."],
+      ["Shinjuku + west Tokyo", "Late food without overloading transit."],
+      ["Move to Kyoto", "Nishiki and a compact evening."],
+      ["Kyoto temples", "Early sights, casual dinner."],
+      ["Uji or Nara", "Tea town or classic day trip."],
+      ["Move to Osaka", "Namba, Dotonbori, and snacks."],
+      ["Osaka full day", "Castle, Umeda, Shinsekai, or Bay."],
+      ["Kobe or Himeji", "Choose harbor food or castle day."],
+      ["Osaka departure", "Keep the final route near KIX."]
+    ],
+    links: [
+      ["Osaka 2-day route", "/guides/osaka-2-day-budget-itinerary"],
+      ["Kobe day trip", "/guides/kobe-day-trip-from-osaka-kyoto-budget"],
+      ["KIX transfer", "/guides/kansai-airport-to-osaka-kyoto-transfer"]
+    ]
+  },
+  "10-slow": {
+    title: "Two-base slow route",
+    copy: "Fewer hotel changes, more breathing room, and day trips chosen by mood.",
+    days: [
+      ["Tokyo arrival", "Settle near a practical station."],
+      ["Ueno + Yanaka", "Quiet streets and lower-pressure food."],
+      ["Asakusa + Sumida", "Older Tokyo without a packed checklist."],
+      ["Fuji or city buffer", "Weather decides the day."],
+      ["Move to Kyoto", "Avoid stacking sights on transfer day."],
+      ["Higashiyama + Gion", "Early start, slow finish."],
+      ["Arashiyama", "One west-side Kyoto day."],
+      ["Uji", "Tea, river, and a half-day pace."],
+      ["Nara", "A classic side trip without changing hotels."],
+      ["Kyoto or Osaka departure", "End near the airport or rail route."]
+    ],
+    links: [
+      ["Kyoto hotel areas", "/guides/where-to-stay-in-kyoto-budget"],
+      ["Nara day trip", "/guides/nara-day-trip-from-osaka-kyoto-budget"],
+      ["Luggage guide", "/guides/japan-luggage-delivery-storage-guide"]
+    ]
+  }
+};
+
+function initRouteRemix() {
+  if (!routeRemix) return;
+
+  const titleEl = document.querySelector("#route-remix-title-output");
+  const badgeEl = document.querySelector("#route-remix-badge");
+  const copyEl = document.querySelector("#route-remix-copy");
+  const daysEl = document.querySelector("#route-remix-days");
+  const linksEl = document.querySelector("#route-remix-links");
+  const dayButtons = routeRemix.querySelectorAll("[data-remix-days]");
+  const styleButtons = routeRemix.querySelectorAll("[data-remix-style]");
+  let selectedDays = "7";
+  let selectedStyle = "classic";
+
+  if (!titleEl || !badgeEl || !copyEl || !daysEl || !linksEl) return;
+
+  function setActive(buttons, attr, value) {
+    buttons.forEach((button) => {
+      const isActive = button.getAttribute(attr) === value;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  function renderPlan() {
+    const plan = routeRemixPlans[`${selectedDays}-${selectedStyle}`];
+    if (!plan) return;
+
+    badgeEl.textContent = `${selectedDays} days`;
+    titleEl.textContent = plan.title;
+    copyEl.textContent = plan.copy;
+    daysEl.innerHTML = "";
+    linksEl.innerHTML = "";
+
+    plan.days.forEach(([title, copy]) => {
+      const item = document.createElement("li");
+      const body = document.createElement("div");
+      const strong = document.createElement("strong");
+      const span = document.createElement("span");
+      strong.textContent = title;
+      span.textContent = copy;
+      body.append(strong, span);
+      item.append(body);
+      daysEl.append(item);
+    });
+
+    plan.links.forEach(([label, href]) => {
+      const link = document.createElement("a");
+      const span = document.createElement("span");
+      const strong = document.createElement("strong");
+      link.href = href;
+      span.textContent = "Guide";
+      strong.textContent = label;
+      link.append(span, strong);
+      linksEl.append(link);
+    });
+  }
+
+  dayButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedDays = button.dataset.remixDays;
+      setActive(dayButtons, "data-remix-days", selectedDays);
+      renderPlan();
+    });
+  });
+
+  styleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedStyle = button.dataset.remixStyle;
+      setActive(styleButtons, "data-remix-style", selectedStyle);
+      renderPlan();
+    });
+  });
+
+  setActive(dayButtons, "data-remix-days", selectedDays);
+  setActive(styleButtons, "data-remix-style", selectedStyle);
+  renderPlan();
+}
+
+initRouteRemix();
+
 const mascotToggle = document.querySelector("#mascot-toggle");
 const mascotCard = document.querySelector("#mascot-card");
 const mascotTip = document.querySelector("#mascot-tip");
