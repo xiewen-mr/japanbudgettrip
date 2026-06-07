@@ -319,6 +319,7 @@ function initQuiz() {
 initQuiz();
 
 const routeRemix = document.querySelector("#route-remix-tool");
+const routeRemixStorageKey = "jbt-route-remix";
 
 const routeRemixPlans = {
   "5-classic": {
@@ -497,6 +498,7 @@ function initRouteRemix() {
   const daysEl = document.querySelector("#route-remix-days");
   const linksEl = document.querySelector("#route-remix-links");
   const surpriseButton = document.querySelector("#route-remix-surprise");
+  const saveButton = document.querySelector("#route-remix-save");
   const copyButton = document.querySelector("#route-remix-copy");
   const statusEl = document.querySelector("#route-remix-status");
   const dayButtons = routeRemix.querySelectorAll("[data-remix-days]");
@@ -506,7 +508,40 @@ function initRouteRemix() {
   let selectedDays = "7";
   let selectedStyle = "classic";
 
-  if (!titleEl || !badgeEl || !copyEl || !daysEl || !linksEl || !surpriseButton || !copyButton || !statusEl) return;
+  if (!titleEl || !badgeEl || !copyEl || !daysEl || !linksEl || !surpriseButton || !saveButton || !copyButton || !statusEl) return;
+
+  function routeKey(days = selectedDays, style = selectedStyle) {
+    return `${days}-${style}`;
+  }
+
+  function hasPlan(days, style) {
+    return Boolean(routeRemixPlans[routeKey(days, style)]);
+  }
+
+  function readSavedRoute() {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(routeRemixStorageKey));
+      if (saved && hasPlan(saved.days, saved.style)) return saved;
+    } catch {
+      return null;
+    }
+    return null;
+  }
+
+  function writeSavedRoute() {
+    const payload = {
+      days: selectedDays,
+      style: selectedStyle,
+      savedAt: new Date().toISOString()
+    };
+    window.localStorage.setItem(routeRemixStorageKey, JSON.stringify(payload));
+  }
+
+  function savedRouteLabel(saved) {
+    if (!saved) return "";
+    const plan = routeRemixPlans[routeKey(saved.days, saved.style)];
+    return `${saved.days}-day ${plan.title}`;
+  }
 
   function setActive(buttons, attr, value) {
     buttons.forEach((button) => {
@@ -517,7 +552,7 @@ function initRouteRemix() {
   }
 
   function renderPlan() {
-    const plan = routeRemixPlans[`${selectedDays}-${selectedStyle}`];
+    const plan = routeRemixPlans[routeKey()];
     if (!plan) return;
 
     badgeEl.textContent = `${selectedDays} days`;
@@ -551,7 +586,7 @@ function initRouteRemix() {
   }
 
   function currentRouteText() {
-    const plan = routeRemixPlans[`${selectedDays}-${selectedStyle}`];
+    const plan = routeRemixPlans[routeKey()];
     if (!plan) return "";
     const days = plan.days.map(([title, copy], index) => `Day ${index + 1}: ${title} - ${copy}`).join("\n");
     const guides = plan.links.map(([label, href]) => `${label}: https://japanbudgettrip.com${href}`).join("\n");
@@ -571,7 +606,7 @@ function initRouteRemix() {
   }
 
   function surpriseRoute() {
-    const currentKey = `${selectedDays}-${selectedStyle}`;
+    const currentKey = routeKey();
     let nextDays = selectedDays;
     let nextStyle = selectedStyle;
 
@@ -586,6 +621,15 @@ function initRouteRemix() {
     setActive(styleButtons, "data-remix-style", selectedStyle);
     renderPlan();
     statusEl.textContent = "New route loaded. Adjust the days or style if it feels too rushed.";
+  }
+
+  function saveRoute() {
+    try {
+      writeSavedRoute();
+      statusEl.textContent = `Saved: ${savedRouteLabel({ days: selectedDays, style: selectedStyle })}. It will load next time on this device.`;
+    } catch {
+      statusEl.textContent = "Save failed. Your browser may be blocking local storage.";
+    }
   }
 
   dayButtons.forEach((button) => {
@@ -607,7 +651,15 @@ function initRouteRemix() {
   });
 
   surpriseButton.addEventListener("click", surpriseRoute);
+  saveButton.addEventListener("click", saveRoute);
   copyButton.addEventListener("click", copyRoute);
+
+  const savedRoute = readSavedRoute();
+  if (savedRoute) {
+    selectedDays = savedRoute.days;
+    selectedStyle = savedRoute.style;
+    statusEl.textContent = `Last saved route loaded: ${savedRouteLabel(savedRoute)}.`;
+  }
 
   setActive(dayButtons, "data-remix-days", selectedDays);
   setActive(styleButtons, "data-remix-style", selectedStyle);
