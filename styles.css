@@ -1039,7 +1039,7 @@ a {
 
 .route {
   display: grid;
-  grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1fr);
+  grid-template-columns: minmax(260px, 0.48fr) minmax(0, 1fr) minmax(150px, 0.22fr);
   align-items: center;
   gap: 22px;
   padding: 22px 24px;
@@ -1050,6 +1050,16 @@ a {
   font-size: 13px;
   font-weight: 780;
   text-transform: uppercase;
+}
+
+.route .route-remix-link {
+  justify-self: end;
+  padding: 9px 11px;
+  border: 1px solid rgba(201, 154, 66, 0.42);
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: #fffaf0;
+  text-align: center;
 }
 
 .guide-link {
@@ -2369,6 +2379,10 @@ a {
 
   .route-remix-actions {
     grid-template-columns: 1fr;
+  }
+
+  .route .route-remix-link {
+    justify-self: start;
   }
 
   .challenge-panel,
