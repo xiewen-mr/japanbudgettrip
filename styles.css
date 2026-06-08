@@ -2171,6 +2171,88 @@ a {
   color: var(--red);
 }
 
+.route-directory-hero {
+  padding-bottom: 28px;
+}
+
+.route-board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.route-board-card {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  background: var(--white);
+  text-decoration: none;
+  box-shadow: 0 18px 42px rgba(16, 35, 38, 0.08);
+}
+
+.route-board-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.route-board-card span,
+.route-board-card strong,
+.route-board-card p,
+.route-board-card small {
+  margin-inline: 18px;
+}
+
+.route-board-card span {
+  margin-top: 18px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.route-board-card strong {
+  margin-top: 8px;
+  color: var(--teal-dark);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1;
+}
+
+.route-board-card p {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.route-board-card small {
+  align-self: end;
+  justify-self: start;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.route-board-card.featured {
+  border-color: rgba(180, 69, 61, 0.36);
+}
+
+.route-board-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+}
+
+.route-patterns .decision-list {
+  margin-top: 0;
+}
+
 .planning-tools {
   margin: 34px 0 0;
   padding: clamp(20px, 4vw, 28px);
@@ -2273,6 +2355,7 @@ a {
   .guide-cluster-grid,
   .guide-cluster-grid.featured,
   .path-grid,
+  .route-board-grid,
   .checklist-grid,
   .region-grid,
   .decision-list,
