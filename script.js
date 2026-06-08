@@ -518,6 +518,27 @@ function initRouteRemix() {
     return Boolean(routeRemixPlans[routeKey(days, style)]);
   }
 
+  function readUrlRoute() {
+    const params = new URLSearchParams(window.location.search);
+    const days = params.get("days");
+    const style = params.get("style");
+    if (hasPlan(days, style)) return { days, style };
+    return null;
+  }
+
+  function routeShareUrl() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("days", selectedDays);
+    url.searchParams.set("style", selectedStyle);
+    url.hash = "route-remix";
+    return url.toString();
+  }
+
+  function syncRouteUrl() {
+    const nextUrl = routeShareUrl();
+    window.history.replaceState(null, "", nextUrl);
+  }
+
   function readSavedRoute() {
     try {
       const saved = JSON.parse(window.localStorage.getItem(routeRemixStorageKey));
@@ -590,7 +611,7 @@ function initRouteRemix() {
     if (!plan) return "";
     const days = plan.days.map(([title, copy], index) => `Day ${index + 1}: ${title} - ${copy}`).join("\n");
     const guides = plan.links.map(([label, href]) => `${label}: https://japanbudgettrip.com${href}`).join("\n");
-    return `Japan Budget Trip route remix\n${selectedDays} days - ${plan.title}\n${plan.copy}\n\n${days}\n\nGuides:\n${guides}`;
+    return `Japan Budget Trip route remix\n${selectedDays} days - ${plan.title}\n${plan.copy}\n\n${days}\n\nGuides:\n${guides}\n\nShare this route:\n${routeShareUrl()}`;
   }
 
   async function copyRoute() {
@@ -599,7 +620,7 @@ function initRouteRemix() {
 
     try {
       await navigator.clipboard.writeText(text);
-      statusEl.textContent = "Route copied. Paste it into your notes before booking.";
+      statusEl.textContent = "Route and share link copied. Paste it into your notes before booking.";
     } catch {
       statusEl.textContent = "Copy failed. Select the route text manually or try again.";
     }
@@ -620,6 +641,7 @@ function initRouteRemix() {
     setActive(dayButtons, "data-remix-days", selectedDays);
     setActive(styleButtons, "data-remix-style", selectedStyle);
     renderPlan();
+    syncRouteUrl();
     statusEl.textContent = "New route loaded. Adjust the days or style if it feels too rushed.";
   }
 
@@ -637,6 +659,7 @@ function initRouteRemix() {
       selectedDays = button.dataset.remixDays;
       setActive(dayButtons, "data-remix-days", selectedDays);
       renderPlan();
+      syncRouteUrl();
       statusEl.textContent = "Route updated. Copy it when the shape feels right.";
     });
   });
@@ -646,6 +669,7 @@ function initRouteRemix() {
       selectedStyle = button.dataset.remixStyle;
       setActive(styleButtons, "data-remix-style", selectedStyle);
       renderPlan();
+      syncRouteUrl();
       statusEl.textContent = "Route updated. Compare the guide links before booking.";
     });
   });
@@ -654,8 +678,13 @@ function initRouteRemix() {
   saveButton.addEventListener("click", saveRoute);
   copyButton.addEventListener("click", copyRoute);
 
+  const urlRoute = readUrlRoute();
   const savedRoute = readSavedRoute();
-  if (savedRoute) {
+  if (urlRoute) {
+    selectedDays = urlRoute.days;
+    selectedStyle = urlRoute.style;
+    statusEl.textContent = "Shared route loaded. Save it if you want it to open again on this device.";
+  } else if (savedRoute) {
     selectedDays = savedRoute.days;
     selectedStyle = savedRoute.style;
     statusEl.textContent = `Last saved route loaded: ${savedRouteLabel(savedRoute)}.`;
