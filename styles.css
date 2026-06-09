@@ -1781,6 +1781,27 @@ a {
   background: var(--paper);
 }
 
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 16px clamp(18px, 4vw, 54px);
+  border-bottom: 1px solid rgba(16, 35, 38, 0.08);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.46);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.breadcrumbs a {
+  color: var(--teal);
+}
+
+.breadcrumbs a:hover {
+  color: var(--red);
+}
+
 .article-hero {
   padding: clamp(52px, 8vw, 96px) clamp(18px, 4vw, 54px) 36px;
   background: var(--teal-dark);
