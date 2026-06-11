@@ -225,7 +225,13 @@
   </url>
   <url>
     <loc>https://japanbudgettrip.com/guides/japan-hotel-booking-checklist-budget</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://japanbudgettrip.com/guides/japan-hotel-booking-sites-compared-2026</loc>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
