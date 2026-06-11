@@ -1242,6 +1242,50 @@ a {
   background: var(--white);
 }
 
+.problem-browser {
+  padding-top: clamp(34px, 5vw, 62px);
+  padding-bottom: clamp(34px, 5vw, 62px);
+  background: var(--white);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.problem-grid a {
+  display: grid;
+  gap: 8px;
+  min-height: 118px;
+  padding: 18px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.problem-grid a:hover {
+  border-color: var(--teal);
+  background: var(--soft);
+}
+
+.problem-grid span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 840;
+  text-transform: uppercase;
+}
+
+.problem-grid strong {
+  color: var(--teal-dark);
+  font-size: 21px;
+  line-height: 1.18;
+}
+
+.guide-card[id] {
+  scroll-margin-top: 96px;
+}
+
 .decision-checklist {
   padding-top: clamp(34px, 5vw, 62px);
   padding-bottom: clamp(34px, 5vw, 62px);
@@ -2375,6 +2419,7 @@ a {
   .guide-grid,
   .guide-cluster-grid,
   .guide-cluster-grid.featured,
+  .problem-grid,
   .path-grid,
   .route-board-grid,
   .checklist-grid,
