@@ -256,13 +256,38 @@ function initQuiz() {
   const resultTitleEl = document.querySelector("#quiz-result-title");
   const resultCopyEl = document.querySelector("#quiz-result-copy");
   const resultLinkEl = document.querySelector("#quiz-result-link");
+  const actionsEl = document.querySelector("#quiz-actions");
+  const shareButton = document.querySelector("#quiz-share");
+  const retakeButton = document.querySelector("#quiz-retake");
   const scores = { tokyo: 0, classic: 0, food: 0, slow: 0, fuji: 0 };
   let questionIndex = 0;
+  let currentResultType = "";
 
-  if (!stepEl || !progressEl || !titleEl || !copyEl || !optionsEl || !resultTitleEl || !resultCopyEl || !resultLinkEl) return;
+  if (!stepEl || !progressEl || !titleEl || !copyEl || !optionsEl || !resultTitleEl || !resultCopyEl || !resultLinkEl || !actionsEl || !shareButton || !retakeButton) return;
 
   function bestType() {
     return Object.keys(scores).sort((a, b) => scores[b] - scores[a])[0];
+  }
+
+  function readUrlResult() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("quiz");
+    return quizResults[type] ? type : "";
+  }
+
+  function resultShareUrl(type = currentResultType) {
+    const url = new URL(window.location.href);
+    if (quizResults[type]) {
+      url.searchParams.set("quiz", type);
+    } else {
+      url.searchParams.delete("quiz");
+    }
+    url.hash = "trip-style-quiz";
+    return url.toString();
+  }
+
+  function syncResultUrl(type) {
+    window.history.replaceState(null, "", resultShareUrl(type));
   }
 
   function renderQuestion() {
@@ -281,10 +306,15 @@ function initQuiz() {
       button.addEventListener("click", () => chooseAnswer(button, option));
       optionsEl.append(button);
     });
+
+    actionsEl.hidden = true;
   }
 
-  function showResult() {
-    const result = quizResults[bestType()];
+  function showResult(type = bestType(), shouldSyncUrl = true) {
+    const result = quizResults[type];
+    if (!result) return;
+
+    currentResultType = type;
     stepEl.textContent = "Quiz complete";
     progressEl.textContent = `${quizQuestions.length} picked`;
     titleEl.textContent = "Your route is ready";
@@ -294,6 +324,9 @@ function initQuiz() {
     resultCopyEl.textContent = result.copy;
     resultLinkEl.href = result.link;
     resultLinkEl.textContent = "Read the Matching Guide";
+    actionsEl.hidden = false;
+    shareButton.textContent = "Share result";
+    if (shouldSyncUrl) syncResultUrl(type);
   }
 
   function chooseAnswer(button, option) {
@@ -313,7 +346,43 @@ function initQuiz() {
     }, 450);
   }
 
-  renderQuestion();
+  async function shareResult() {
+    if (!currentResultType) return;
+
+    try {
+      await navigator.clipboard.writeText(resultShareUrl(currentResultType));
+      shareButton.textContent = "Link copied";
+    } catch {
+      shareButton.textContent = "Copy failed";
+    }
+  }
+
+  function retakeQuiz() {
+    Object.keys(scores).forEach((type) => {
+      scores[type] = 0;
+    });
+    questionIndex = 0;
+    currentResultType = "";
+    const url = new URL(window.location.href);
+    url.searchParams.delete("quiz");
+    url.hash = "trip-style-quiz";
+    window.history.replaceState(null, "", url.toString());
+    resultTitleEl.textContent = "Not set yet";
+    resultCopyEl.textContent = "Your result will appear after the final question.";
+    resultLinkEl.href = "/guides/first-japan-trip-checklist";
+    resultLinkEl.textContent = "Read the Matching Guide";
+    renderQuestion();
+  }
+
+  shareButton.addEventListener("click", shareResult);
+  retakeButton.addEventListener("click", retakeQuiz);
+
+  const urlResult = readUrlResult();
+  if (urlResult) {
+    showResult(urlResult, false);
+  } else {
+    renderQuestion();
+  }
 }
 
 initQuiz();

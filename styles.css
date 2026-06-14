@@ -1032,6 +1032,33 @@ a {
   font-size: clamp(28px, 4vw, 42px);
 }
 
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.quiz-actions button {
+  min-height: 40px;
+  padding: 10px 13px;
+  border: 1px solid rgba(201, 154, 66, 0.5);
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: var(--white);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 820;
+  cursor: pointer;
+}
+
+.quiz-actions button:hover,
+.quiz-actions button:focus-visible {
+  border-color: var(--teal);
+  outline: 0;
+  background: #f5fbf8;
+}
+
 .route-list {
   display: grid;
   gap: 12px;
