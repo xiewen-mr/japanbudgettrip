@@ -104,60 +104,46 @@
         </div>
       </section>
 
-      <section class="section coverage-map-section" aria-labelledby="coverage-map-title">
-        <div class="coverage-map-copy">
-          <p class="eyebrow">Coverage map</p>
-          <h2 id="coverage-map-title">Follow the first-trip Japan route by region.</h2>
-          <p>Start with nationwide budget decisions, then choose the city guide, hotel base, airport transfer, or day trip that matches where you are going.</p>
+      <section class="section split" id="calculator">
+        <div class="section-header compact">
+          <p class="eyebrow">Free tool</p>
+          <h2>Japan trip budget calculator</h2>
+          <p>
+            Estimate the on-ground cost for your Japan trip. Flights are excluded because they vary heavily by origin city.
+          </p>
         </div>
-        <div class="coverage-map-shell">
-          <div class="japan-map image-map" aria-label="Japan Budget Trip coverage map">
-            <div class="coverage-image-wrap">
-              <img width="1280" height="721" src="assets/japan-coverage-map.webp" alt="Illustrated Japan travel coverage map showing Tokyo, Mount Fuji, Kyoto, Osaka, and KIX on the first-trip route">
-              <a class="map-hotspot tokyo" href="/guides/tokyo-city-guide-budget" aria-label="Open Tokyo budget travel guide"></a>
-              <a class="map-hotspot fuji" href="/guides/mount-fuji-day-trip-from-tokyo-budget" aria-label="Open Mount Fuji day trip guide"></a>
-              <a class="map-hotspot kyoto" href="/guides/kyoto-city-guide-budget" aria-label="Open Kyoto budget travel guide"></a>
-              <a class="map-hotspot osaka" href="/guides/osaka-city-guide-budget" aria-label="Open Osaka budget travel guide"></a>
-              <a class="map-hotspot kix" href="/guides/kansai-airport-to-osaka-kyoto-transfer" aria-label="Open Kansai Airport transfer guide"></a>
-            </div>
-          </div>
-          <div class="coverage-links" aria-label="Coverage guide links">
-            <a href="/guides/tokyo-city-guide-budget"><span>Tokyo</span><strong>City guide, hotels, airport access</strong></a>
-            <a href="/guides/kyoto-city-guide-budget"><span>Kyoto</span><strong>Temples, crowds, hotel bases</strong></a>
-            <a href="/guides/osaka-city-guide-budget"><span>Osaka / Kansai</span><strong>Food, KIX, Kyoto day trips</strong></a>
-            <a href="/guides/mount-fuji-day-trip-from-tokyo-budget"><span>Mount Fuji</span><strong>Day trip or overnight tradeoff</strong></a>
-            <a href="/guides/japan-trip-cost-2026"><span>Nationwide</span><strong>Costs, rail, luggage, eSIM, insurance</strong></a>
-          </div>
-        </div>
-      </section>
 
-      <section class="section quick-paths" aria-labelledby="quick-paths-title">
-        <div class="section-header">
-          <p class="eyebrow">Choose your next step</p>
-          <h2 id="quick-paths-title">Jump to the decision you are making right now.</h2>
-        </div>
-        <div class="path-grid">
-          <a class="path-card" href="#calculator">
-            <span>01</span>
-            <strong>I need a realistic total cost</strong>
-            <p>Estimate lodging, food, transport, attractions, and buffer before you book.</p>
-          </a>
-          <a class="path-card" href="/guides/first-japan-trip-checklist">
-            <span>02</span>
-            <strong>I am planning my first Japan trip</strong>
-            <p>Use a booking order so flights, hotels, routes, internet, and insurance do not conflict.</p>
-          </a>
-          <a class="path-card" href="/guides/is-japan-too-crowded-2026">
-            <span>03</span>
-            <strong>I am worried about crowds</strong>
-            <p>Shift timing, city order, and day-trip choices around Japan&apos;s busiest travel bottlenecks.</p>
-          </a>
-          <a class="path-card" href="/resources/">
-            <span>04</span>
-            <strong>I am close to buying things</strong>
-            <p>Compare internet, hotel areas, airport transfers, rail choices, insurance, and day trips.</p>
-          </a>
-        </div>
+        <form class="calculator" id="budget-form">
+          <label>
+            Days in Japan
+            <input id="days" name="days" type="number" min="1" max="60" value="7">
+          </label>
+          <label>
+            Travelers
+            <input id="travelers" name="travelers" type="number" min="1" max="12" value="2">
+          </label>
+          <label>
+            Travel style
+            <select id="style" name="style">
+              <option value="budget">Budget</option>
+              <option value="comfort" selected>Comfort</option>
+              <option value="midrange">Mid-range</option>
+            </select>
+          </label>
+          <label>
+            Cities
+            <select id="cities" name="cities">
+              <option value="one">One city</option>
+              <option value="two" selected>Two cities</option>
+              <option value="three">Three or more</option>
+            </select>
+          </label>
+          <div class="result" aria-live="polite">
+            <span class="result-label">Estimated total</span>
+            <strong id="total">$0</strong>
+            <span id="daily" class="result-note">$0 per traveler per day</span>
+          </div>
+        </form>
       </section>
 
       <section class="section route-remix-section" id="route-remix" aria-labelledby="route-remix-title">
@@ -203,173 +189,36 @@
         </div>
       </section>
 
-      <section class="section" id="costs">
+      <section class="section quick-paths" aria-labelledby="quick-paths-title">
         <div class="section-header">
-          <p class="eyebrow">Trip costs</p>
-          <h2>Know the real numbers before booking.</h2>
+          <p class="eyebrow">Choose your next step</p>
+          <h2 id="quick-paths-title">Jump to the decision you are making right now.</h2>
         </div>
-        <div class="cost-grid">
-          <article class="info-card">
-            <span class="card-kicker">Sleep</span>
-            <h3>Hotel base matters most</h3>
-            <p>Budget rooms often decide the total more than food. Compare station access before chasing the cheapest nightly rate.</p>
-            <dl class="cost-facts"><div><dt>Planning range</dt><dd>$45-160/night</dd></div><div><dt>Biggest swing</dt><dd>Season and station access</dd></div></dl>
-          </article>
-          <article class="info-card">
-            <span class="card-kicker">Move</span>
-            <h3>Route math beats pass hype</h3>
-            <p>JR Pass prices, airport rail, buses, and local fares change. Check the actual route before buying any pass.</p>
-            <dl class="cost-facts"><div><dt>JR Pass 7-day</dt><dd>¥50,000 ordinary</dd></div><div><dt>Narita benchmark</dt><dd>Skyliner about ¥2,465</dd></div></dl>
-          </article>
-          <article class="info-card">
-            <span class="card-kicker">Eat</span>
-            <h3>Food can stay predictable</h3>
-            <p>Convenience stores, ramen, set meals, and casual chains keep daily costs stable while leaving room for one splurge.</p>
-            <dl class="cost-facts"><div><dt>Budget day</dt><dd>$18-30</dd></div><div><dt>Comfort day</dt><dd>$35-55</dd></div></dl>
-          </article>
-        </div>
-        <div class="source-strip" aria-label="Price source notes">
-          <div>
-            <span>Prices and rules checked from official sources</span>
-            <p>Benchmarks use official JR Pass, airport access, visitor statistics, and transport sources. Treat them as planning ranges and verify current prices before booking.</p>
-          </div>
-          <a href="/price-notes/">View price notes</a>
-        </div>
-      </section>
-
-      <section class="section split" id="calculator">
-        <div class="section-header compact">
-          <p class="eyebrow">Free tool</p>
-          <h2>Japan trip budget calculator</h2>
-          <p>
-            Estimate the on-ground cost for your Japan trip. Flights are excluded because they vary heavily by origin city.
-          </p>
-        </div>
-
-        <form class="calculator" id="budget-form">
-          <label>
-            Days in Japan
-            <input id="days" name="days" type="number" min="1" max="60" value="7">
-          </label>
-          <label>
-            Travelers
-            <input id="travelers" name="travelers" type="number" min="1" max="12" value="2">
-          </label>
-          <label>
-            Travel style
-            <select id="style" name="style">
-              <option value="budget">Budget</option>
-              <option value="comfort" selected>Comfort</option>
-              <option value="midrange">Mid-range</option>
-            </select>
-          </label>
-          <label>
-            Cities
-            <select id="cities" name="cities">
-              <option value="one">One city</option>
-              <option value="two" selected>Two cities</option>
-              <option value="three">Three or more</option>
-            </select>
-          </label>
-          <div class="result" aria-live="polite">
-            <span class="result-label">Estimated total</span>
-            <strong id="total">$0</strong>
-            <span id="daily" class="result-note">$0 per traveler per day</span>
-          </div>
-        </form>
-      </section>
-
-      <section class="section trip-quiz-section" id="trip-style-quiz">
-        <div class="section-header">
-          <p class="eyebrow">Trip style quiz</p>
-          <h2>Find the Japan route that fits your travel style.</h2>
-          <p>Answer five quick questions and get a practical route type with the guide to read next.</p>
-        </div>
-
-        <div class="challenge trip-quiz" id="trip-quiz">
-          <div class="challenge-panel">
-            <div class="challenge-status">
-              <span id="quiz-step">Question 1 of 5</span>
-              <strong id="quiz-progress">0 picked</strong>
-            </div>
-            <h3 id="quiz-title">How many days do you have?</h3>
-            <p id="quiz-copy">Pick the answer closest to your current plan.</p>
-            <div class="challenge-options" id="quiz-options"></div>
-          </div>
-          <aside class="challenge-result quiz-result" aria-live="polite">
-            <span class="result-label">Your route type</span>
-            <strong id="quiz-result-title">Not set yet</strong>
-            <p id="quiz-result-copy">Your result will appear after the final question.</p>
-            <a class="button primary" id="quiz-result-link" href="/guides/first-japan-trip-checklist">Read the Matching Guide</a>
-            <div class="quiz-actions" id="quiz-actions" hidden>
-              <button type="button" id="quiz-share">Share result</button>
-              <button type="button" id="quiz-retake">Retake quiz</button>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section challenge-section" id="challenge">
-        <div class="section-header">
-          <p class="eyebrow">Mini game</p>
-          <h2>Japan budget challenge</h2>
-          <p>Make five planning choices and see whether your first Japan trip stays efficient, comfortable, or expensive.</p>
-        </div>
-
-        <div class="challenge" id="budget-challenge">
-          <div class="challenge-panel">
-            <div class="challenge-status">
-              <span id="challenge-step">Decision 1 of 5</span>
-              <strong id="challenge-score">0 pts</strong>
-            </div>
-            <h3 id="challenge-title">Pick your first arrival move.</h3>
-            <p id="challenge-copy">You land tired, with one suitcase, and your hotel is near Ueno.</p>
-            <div class="challenge-options" id="challenge-options"></div>
-          </div>
-          <aside class="challenge-result" aria-live="polite">
-            <span class="result-label">Trip style</span>
-            <strong id="challenge-grade">Start</strong>
-            <p id="challenge-feedback">Choose the practical option, not always the cheapest-looking one.</p>
-            <a class="button primary" id="challenge-link" href="/guides/japan-airport-transfer-guide">Read the Matching Guide</a>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section muted" id="itineraries">
-        <div class="section-header">
-          <p class="eyebrow">Starter routes</p>
-          <h2>Start with a route that matches your pace.</h2>
-          <p><a class="muted-link" href="/routes/">Open the full Japan itinerary route hub</a></p>
-        </div>
-        <div class="route-list">
-          <a class="route" href="/?days=7&style=classic#route-remix">
-            <div>
-              <span>First Japan Trip</span>
-              <h3>Tokyo, Kyoto, Osaka in 7 days</h3>
-            </div>
-            <p>Best for travelers who want the classic route with realistic hotel, food, and train costs.</p>
-            <span class="route-remix-link">Try 7-day classic remix</span>
+        <div class="path-grid">
+          <a class="path-card" href="#calculator">
+            <span>01</span>
+            <strong>I need a realistic total cost</strong>
+            <p>Estimate lodging, food, transport, attractions, and buffer before you book.</p>
           </a>
-          <a class="route" href="/?days=5&style=classic#route-remix">
-            <div>
-              <span>Tokyo Focus</span>
-              <h3>5 days in Tokyo under $750</h3>
-            </div>
-            <p>Neighborhood base guide, local trains, cheap eats, free viewpoints, and one paid highlight.</p>
-            <span class="route-remix-link">Try 5-day Tokyo remix</span>
+          <a class="path-card" href="/guides/first-japan-trip-checklist">
+            <span>02</span>
+            <strong>I am planning my first Japan trip</strong>
+            <p>Use a booking order so flights, hotels, routes, internet, and insurance do not conflict.</p>
           </a>
-          <a class="route" href="/?days=10&style=slow#route-remix">
-            <div>
-              <span>Slow Travel</span>
-              <h3>10 days with fewer hotel changes</h3>
-            </div>
-            <p>A calmer plan for couples, families, and first-time travelers who do not want to rush.</p>
-            <span class="route-remix-link">Open 10-day slow remix</span>
+          <a class="path-card" href="/guides/is-japan-too-crowded-2026">
+            <span>03</span>
+            <strong>I am worried about crowds</strong>
+            <p>Shift timing, city order, and day-trip choices around Japan&apos;s busiest travel bottlenecks.</p>
+          </a>
+          <a class="path-card" href="/resources/">
+            <span>04</span>
+            <strong>I am close to buying things</strong>
+            <p>Compare internet, hotel areas, airport transfers, rail choices, insurance, and day trips.</p>
           </a>
         </div>
       </section>
 
-      <section class="section" id="guides">
+      <section class="section home-guide-preview" id="guides">
         <div class="section-header">
           <p class="eyebrow">Guide shortcuts</p>
           <h2>Pick the article that matches today&apos;s planning problem.</h2>
@@ -647,6 +496,157 @@
               </a>
             </div>
           </section>
+        </div>
+      </section>
+
+      <section class="section coverage-map-section" aria-labelledby="coverage-map-title">
+        <div class="coverage-map-copy">
+          <p class="eyebrow">Coverage map</p>
+          <h2 id="coverage-map-title">Follow the first-trip Japan route by region.</h2>
+          <p>Start with nationwide budget decisions, then choose the city guide, hotel base, airport transfer, or day trip that matches where you are going.</p>
+        </div>
+        <div class="coverage-map-shell">
+          <div class="japan-map image-map" aria-label="Japan Budget Trip coverage map">
+            <div class="coverage-image-wrap">
+              <img width="1280" height="721" src="assets/japan-coverage-map.webp" alt="Illustrated Japan travel coverage map showing Tokyo, Mount Fuji, Kyoto, Osaka, and KIX on the first-trip route">
+              <a class="map-hotspot tokyo" href="/guides/tokyo-city-guide-budget" aria-label="Open Tokyo budget travel guide"></a>
+              <a class="map-hotspot fuji" href="/guides/mount-fuji-day-trip-from-tokyo-budget" aria-label="Open Mount Fuji day trip guide"></a>
+              <a class="map-hotspot kyoto" href="/guides/kyoto-city-guide-budget" aria-label="Open Kyoto budget travel guide"></a>
+              <a class="map-hotspot osaka" href="/guides/osaka-city-guide-budget" aria-label="Open Osaka budget travel guide"></a>
+              <a class="map-hotspot kix" href="/guides/kansai-airport-to-osaka-kyoto-transfer" aria-label="Open Kansai Airport transfer guide"></a>
+            </div>
+          </div>
+          <div class="coverage-links" aria-label="Coverage guide links">
+            <a href="/guides/tokyo-city-guide-budget"><span>Tokyo</span><strong>City guide, hotels, airport access</strong></a>
+            <a href="/guides/kyoto-city-guide-budget"><span>Kyoto</span><strong>Temples, crowds, hotel bases</strong></a>
+            <a href="/guides/osaka-city-guide-budget"><span>Osaka / Kansai</span><strong>Food, KIX, Kyoto day trips</strong></a>
+            <a href="/guides/mount-fuji-day-trip-from-tokyo-budget"><span>Mount Fuji</span><strong>Day trip or overnight tradeoff</strong></a>
+            <a href="/guides/japan-trip-cost-2026"><span>Nationwide</span><strong>Costs, rail, luggage, eSIM, insurance</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="costs">
+        <div class="section-header">
+          <p class="eyebrow">Trip costs</p>
+          <h2>Know the real numbers before booking.</h2>
+        </div>
+        <div class="cost-grid">
+          <article class="info-card">
+            <span class="card-kicker">Sleep</span>
+            <h3>Hotel base matters most</h3>
+            <p>Budget rooms often decide the total more than food. Compare station access before chasing the cheapest nightly rate.</p>
+            <dl class="cost-facts"><div><dt>Planning range</dt><dd>$45-160/night</dd></div><div><dt>Biggest swing</dt><dd>Season and station access</dd></div></dl>
+          </article>
+          <article class="info-card">
+            <span class="card-kicker">Move</span>
+            <h3>Route math beats pass hype</h3>
+            <p>JR Pass prices, airport rail, buses, and local fares change. Check the actual route before buying any pass.</p>
+            <dl class="cost-facts"><div><dt>JR Pass 7-day</dt><dd>¥50,000 ordinary</dd></div><div><dt>Narita benchmark</dt><dd>Skyliner about ¥2,465</dd></div></dl>
+          </article>
+          <article class="info-card">
+            <span class="card-kicker">Eat</span>
+            <h3>Food can stay predictable</h3>
+            <p>Convenience stores, ramen, set meals, and casual chains keep daily costs stable while leaving room for one splurge.</p>
+            <dl class="cost-facts"><div><dt>Budget day</dt><dd>$18-30</dd></div><div><dt>Comfort day</dt><dd>$35-55</dd></div></dl>
+          </article>
+        </div>
+        <div class="source-strip" aria-label="Price source notes">
+          <div>
+            <span>Prices and rules checked from official sources</span>
+            <p>Benchmarks use official JR Pass, airport access, visitor statistics, and transport sources. Treat them as planning ranges and verify current prices before booking.</p>
+          </div>
+          <a href="/price-notes/">View price notes</a>
+        </div>
+      </section>
+
+      <section class="section trip-quiz-section" id="trip-style-quiz">
+        <div class="section-header">
+          <p class="eyebrow">Trip style quiz</p>
+          <h2>Find the Japan route that fits your travel style.</h2>
+          <p>Answer five quick questions and get a practical route type with the guide to read next.</p>
+        </div>
+
+        <div class="challenge trip-quiz" id="trip-quiz">
+          <div class="challenge-panel">
+            <div class="challenge-status">
+              <span id="quiz-step">Question 1 of 5</span>
+              <strong id="quiz-progress">0 picked</strong>
+            </div>
+            <h3 id="quiz-title">How many days do you have?</h3>
+            <p id="quiz-copy">Pick the answer closest to your current plan.</p>
+            <div class="challenge-options" id="quiz-options"></div>
+          </div>
+          <aside class="challenge-result quiz-result" aria-live="polite">
+            <span class="result-label">Your route type</span>
+            <strong id="quiz-result-title">Not set yet</strong>
+            <p id="quiz-result-copy">Your result will appear after the final question.</p>
+            <a class="button primary" id="quiz-result-link" href="/guides/first-japan-trip-checklist">Read the Matching Guide</a>
+            <div class="quiz-actions" id="quiz-actions" hidden>
+              <button type="button" id="quiz-share">Share result</button>
+              <button type="button" id="quiz-retake">Retake quiz</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section challenge-section" id="challenge">
+        <div class="section-header">
+          <p class="eyebrow">Mini game</p>
+          <h2>Japan budget challenge</h2>
+          <p>Make five planning choices and see whether your first Japan trip stays efficient, comfortable, or expensive.</p>
+        </div>
+
+        <div class="challenge" id="budget-challenge">
+          <div class="challenge-panel">
+            <div class="challenge-status">
+              <span id="challenge-step">Decision 1 of 5</span>
+              <strong id="challenge-score">0 pts</strong>
+            </div>
+            <h3 id="challenge-title">Pick your first arrival move.</h3>
+            <p id="challenge-copy">You land tired, with one suitcase, and your hotel is near Ueno.</p>
+            <div class="challenge-options" id="challenge-options"></div>
+          </div>
+          <aside class="challenge-result" aria-live="polite">
+            <span class="result-label">Trip style</span>
+            <strong id="challenge-grade">Start</strong>
+            <p id="challenge-feedback">Choose the practical option, not always the cheapest-looking one.</p>
+            <a class="button primary" id="challenge-link" href="/guides/japan-airport-transfer-guide">Read the Matching Guide</a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section muted" id="itineraries">
+        <div class="section-header">
+          <p class="eyebrow">Starter routes</p>
+          <h2>Start with a route that matches your pace.</h2>
+          <p><a class="muted-link" href="/routes/">Open the full Japan itinerary route hub</a></p>
+        </div>
+        <div class="route-list">
+          <a class="route" href="/?days=7&style=classic#route-remix">
+            <div>
+              <span>First Japan Trip</span>
+              <h3>Tokyo, Kyoto, Osaka in 7 days</h3>
+            </div>
+            <p>Best for travelers who want the classic route with realistic hotel, food, and train costs.</p>
+            <span class="route-remix-link">Try 7-day classic remix</span>
+          </a>
+          <a class="route" href="/?days=5&style=classic#route-remix">
+            <div>
+              <span>Tokyo Focus</span>
+              <h3>5 days in Tokyo under $750</h3>
+            </div>
+            <p>Neighborhood base guide, local trains, cheap eats, free viewpoints, and one paid highlight.</p>
+            <span class="route-remix-link">Try 5-day Tokyo remix</span>
+          </a>
+          <a class="route" href="/?days=10&style=slow#route-remix">
+            <div>
+              <span>Slow Travel</span>
+              <h3>10 days with fewer hotel changes</h3>
+            </div>
+            <p>A calmer plan for couples, families, and first-time travelers who do not want to rush.</p>
+            <span class="route-remix-link">Open 10-day slow remix</span>
+          </a>
         </div>
       </section>
 
