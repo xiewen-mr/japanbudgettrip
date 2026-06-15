@@ -1388,6 +1388,88 @@ a {
   line-height: 1.55;
 }
 
+.guide-finder-section {
+  background: var(--white);
+}
+
+.guide-finder {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.guide-search {
+  display: grid;
+  gap: 8px;
+}
+
+.guide-search span {
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.guide-search input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--white);
+  font: inherit;
+  font-size: 16px;
+}
+
+.guide-search input:focus {
+  border-color: var(--teal);
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(41, 119, 118, 0.14);
+}
+
+.guide-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.guide-filter-buttons button {
+  min-height: 40px;
+  padding: 9px 13px;
+  border: 1px solid rgba(41, 119, 118, 0.24);
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: var(--white);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 820;
+  cursor: pointer;
+}
+
+.guide-filter-buttons button.active,
+.guide-filter-buttons button:hover,
+.guide-filter-buttons button:focus-visible {
+  border-color: var(--teal-dark);
+  outline: 0;
+  color: var(--white);
+  background: var(--teal-dark);
+}
+
+.guide-finder-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 720;
+}
+
+.guide-card.is-hidden {
+  display: none;
+}
+
 .guide-directory {
   padding-top: clamp(38px, 6vw, 76px);
 }

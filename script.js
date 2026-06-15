@@ -766,6 +766,107 @@ function initRouteRemix() {
 
 initRouteRemix();
 
+const guideFinder = document.querySelector("#guide-finder");
+
+function initGuideFinder() {
+  if (!guideFinder) return;
+
+  const searchInput = document.querySelector("#guide-search");
+  const statusEl = document.querySelector("#guide-finder-status");
+  const filterButtons = guideFinder.querySelectorAll("[data-guide-filter]");
+  const guideCards = document.querySelectorAll(".guide-directory .guide-card");
+  let activeFilter = "all";
+
+  if (!searchInput || !statusEl || !filterButtons.length || !guideCards.length) return;
+
+  const filterKeywords = {
+    costs: ["budget", "cost", "tax", "cheap food", "convenience", "trip cost"],
+    routes: ["route", "itinerary", "city guide", "tokyo", "kyoto", "osaka", "fuji", "day trip", "nara", "uji", "kobe", "himeji"],
+    hotels: ["hotel", "stay", "base", "booking sites"],
+    transport: ["transport", "airport", "narita", "haneda", "kix", "jr pass", "rail", "luggage"],
+    internet: ["internet", "esim", "wifi"],
+    insurance: ["insurance"],
+    seasonal: ["rainy", "typhoon", "fireworks", "obon", "summer", "autumn", "crowd", "trends"]
+  };
+
+  function cardText(card) {
+    return card.textContent.toLowerCase();
+  }
+
+  function matchesFilter(card, filter) {
+    if (filter === "all") return true;
+    const keywords = filterKeywords[filter] || [];
+    const text = cardText(card);
+    return keywords.some((keyword) => text.includes(keyword));
+  }
+
+  function matchesSearch(card, query) {
+    if (!query) return true;
+    return cardText(card).includes(query);
+  }
+
+  function updateUrl(query) {
+    const url = new URL(window.location.href);
+    if (activeFilter === "all") {
+      url.searchParams.delete("topic");
+    } else {
+      url.searchParams.set("topic", activeFilter);
+    }
+    if (query) {
+      url.searchParams.set("q", query);
+    } else {
+      url.searchParams.delete("q");
+    }
+    url.hash = "guide-finder";
+    window.history.replaceState(null, "", url.toString());
+  }
+
+  function applyFilters(shouldSyncUrl = true) {
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    guideCards.forEach((card) => {
+      const isVisible = matchesFilter(card, activeFilter) && matchesSearch(card, query);
+      card.classList.toggle("is-hidden", !isVisible);
+      if (isVisible) visibleCount += 1;
+    });
+
+    const label = activeFilter === "all" ? "all topics" : activeFilter;
+    statusEl.textContent = query
+      ? `Showing ${visibleCount} guides for "${query}" in ${label}.`
+      : `Showing ${visibleCount} guides in ${label}.`;
+
+    if (shouldSyncUrl) updateUrl(query);
+  }
+
+  function setActiveFilter(filter) {
+    activeFilter = filterKeywords[filter] || filter === "all" ? filter : "all";
+    filterButtons.forEach((button) => {
+      const isActive = button.dataset.guideFilter === activeFilter;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveFilter(button.dataset.guideFilter);
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener("input", () => applyFilters());
+
+  const params = new URLSearchParams(window.location.search);
+  const urlTopic = params.get("topic");
+  const urlQuery = params.get("q");
+  if (urlTopic) setActiveFilter(urlTopic);
+  if (urlQuery) searchInput.value = urlQuery;
+  applyFilters(false);
+}
+
+initGuideFinder();
+
 const mascotToggle = document.querySelector("#mascot-toggle");
 const mascotCard = document.querySelector("#mascot-card");
 const mascotTip = document.querySelector("#mascot-tip");
