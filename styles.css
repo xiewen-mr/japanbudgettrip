@@ -1187,6 +1187,10 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.home-guide-preview .guide-card:nth-of-type(n + 7) {
+  display: none;
+}
+
 .resources-card {
   min-height: 220px;
   padding-top: 18px;
