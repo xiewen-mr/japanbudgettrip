@@ -1191,6 +1191,36 @@ a {
   display: none;
 }
 
+.home-guide-more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.home-guide-more div {
+  display: grid;
+  gap: 5px;
+}
+
+.home-guide-more span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 840;
+  text-transform: uppercase;
+}
+
+.home-guide-more strong {
+  color: var(--teal-dark);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.18;
+}
+
 .resources-card {
   min-height: 220px;
   padding-top: 18px;
@@ -2576,6 +2606,11 @@ a {
   .source-strip {
     grid-template-columns: 1fr;
     align-items: stretch;
+  }
+
+  .home-guide-more {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .planning-tool-grid {
