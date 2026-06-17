@@ -685,6 +685,44 @@ a {
   line-height: 1;
 }
 
+.calculator-next {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calculator-next a {
+  display: grid;
+  gap: 5px;
+  min-height: 84px;
+  padding: 14px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.calculator-next a:hover,
+.calculator-next a:focus-visible {
+  border-color: var(--teal);
+  outline: 0;
+  background: var(--soft);
+}
+
+.calculator-next span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 840;
+  text-transform: uppercase;
+}
+
+.calculator-next strong {
+  font-size: 15px;
+  line-height: 1.18;
+}
+
 .route-remix-section {
   background: var(--paper);
 }
@@ -2615,6 +2653,10 @@ a {
 
   .planning-tool-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-next {
+    grid-template-columns: 1fr;
   }
 
   .next-move-grid {
