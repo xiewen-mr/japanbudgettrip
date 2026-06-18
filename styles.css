@@ -1265,10 +1265,6 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.home-guide-preview .guide-card:nth-of-type(n + 7) {
-  display: none;
-}
-
 .home-guide-more {
   display: flex;
   align-items: center;
