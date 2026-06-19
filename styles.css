@@ -282,6 +282,107 @@ a {
   background: var(--white);
 }
 
+.planning-board {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.54fr) minmax(0, 1fr);
+  gap: clamp(22px, 4vw, 48px);
+  align-items: start;
+  padding: clamp(34px, 5vw, 62px) clamp(18px, 4vw, 54px);
+  border-bottom: 1px solid rgba(16, 35, 38, 0.08);
+  background: var(--teal-dark);
+  color: var(--white);
+}
+
+.planning-board-head {
+  position: sticky;
+  top: 82px;
+}
+
+.planning-board-head h2 {
+  margin: 0;
+  max-width: 540px;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.planning-board-head p:not(.eyebrow) {
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.planning-board-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.planning-board-card {
+  grid-column: span 3;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 176px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+
+.planning-board-card.primary {
+  grid-row: span 2;
+  min-height: 364px;
+  background:
+    linear-gradient(145deg, rgba(180, 69, 61, 0.92), rgba(201, 154, 66, 0.68)),
+    var(--red);
+}
+
+.planning-board-card span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--teal-dark);
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 13px;
+  font-weight: 860;
+}
+
+.planning-board-card strong {
+  max-width: 13ch;
+  font-size: clamp(22px, 2.8vw, 34px);
+  line-height: 1.04;
+}
+
+.planning-board-card:not(.primary) strong {
+  max-width: 17ch;
+  font-size: clamp(19px, 2vw, 24px);
+}
+
+.planning-board-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.55;
+}
+
+.planning-board-card:hover,
+.planning-board-card:focus-visible {
+  border-color: rgba(255, 255, 255, 0.42);
+  outline: 0;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.planning-board-card.primary:hover,
+.planning-board-card.primary:focus-visible {
+  background:
+    linear-gradient(145deg, rgba(180, 69, 61, 0.98), rgba(201, 154, 66, 0.76)),
+    var(--red);
+}
+
 .stat-value,
 .stat-label {
   display: block;
@@ -2632,6 +2733,25 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .planning-board {
+    grid-template-columns: 1fr;
+  }
+
+  .planning-board-head {
+    position: static;
+  }
+
+  .planning-board-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .planning-board-card,
+  .planning-board-card.primary {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 190px;
+  }
+
   .city-zone-grid,
   .stats-band,
   .coverage-map-section,
@@ -2722,6 +2842,31 @@ a {
 
   .hero-planner {
     padding: 18px;
+  }
+
+  .planning-board {
+    padding: 30px 16px;
+  }
+
+  .planning-board-grid {
+    display: flex;
+    gap: 10px;
+    margin-inline: -16px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .planning-board-card,
+  .planning-board-card.primary {
+    flex: 0 0 min(82vw, 320px);
+    min-height: 210px;
+    scroll-snap-align: start;
+  }
+
+  .planning-board-card strong,
+  .planning-board-card:not(.primary) strong {
+    font-size: 22px;
   }
 
   .japan-map {
