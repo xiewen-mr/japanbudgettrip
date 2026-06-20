@@ -2694,6 +2694,130 @@ a {
   line-height: 1.18;
 }
 
+.calendar-hero {
+  background:
+    linear-gradient(90deg, rgba(10, 27, 31, 0.86), rgba(10, 27, 31, 0.48)),
+    url("assets/japan-autumn-foliage-2026-budget-route.webp") center / cover;
+  color: var(--white);
+}
+
+.calendar-hero .directory-intro {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.calendar-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.calendar-snapshot-grid article,
+.month-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.calendar-snapshot-grid article {
+  display: grid;
+  gap: 10px;
+  min-height: 190px;
+  padding: 22px;
+}
+
+.calendar-snapshot-grid span,
+.month-card span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.calendar-snapshot-grid strong {
+  color: var(--teal-dark);
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.05;
+}
+
+.calendar-snapshot-grid p,
+.month-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.month-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.month-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 250px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.month-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--teal);
+}
+
+.month-card.quiet::before {
+  background: #5f8f78;
+}
+
+.month-card.busy::before {
+  background: var(--red);
+}
+
+.month-card.rainy::before {
+  background: #4c7f9f;
+}
+
+.month-card.hot::before {
+  background: var(--gold);
+}
+
+.month-card strong {
+  color: var(--teal-dark);
+  font-size: 23px;
+  line-height: 1.08;
+}
+
+.month-card a {
+  align-self: end;
+  justify-self: start;
+  margin-top: 8px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  color: var(--white);
+  background: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.month-card a:hover,
+.month-card a:focus-visible {
+  outline: 2px solid rgba(201, 154, 66, 0.46);
+  outline-offset: 2px;
+}
+
+.calendar-holiday-list article {
+  min-height: 170px;
+}
+
+.calendar-source {
+  margin-top: 22px;
+}
+
 .home-tools,
 .directory-tools {
   margin-top: 0;
@@ -2753,6 +2877,8 @@ a {
   }
 
   .city-zone-grid,
+  .calendar-snapshot-grid,
+  .month-board,
   .stats-band,
   .coverage-map-section,
   .coverage-map-shell,
