@@ -786,7 +786,7 @@ function initGuideFinder() {
     transport: ["transport", "airport", "narita", "haneda", "kix", "jr pass", "rail", "luggage"],
     internet: ["internet", "esim", "wifi"],
     insurance: ["insurance"],
-    seasonal: ["rainy", "typhoon", "fireworks", "obon", "summer", "autumn", "crowd", "trends"]
+    seasonal: ["rainy", "typhoon", "fireworks", "obon", "summer", "autumn", "crowd", "trends", "calendar", "holiday", "month", "season"]
   };
 
   function cardText(card) {
