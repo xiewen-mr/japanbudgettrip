@@ -59,6 +59,7 @@ const lines = [
   "",
   "- [Home](https://japanbudgettrip.com/): budget calculator, route remix, guide shortcuts, and planning tools.",
   "- [Routes](https://japanbudgettrip.com/routes/): 5, 7, and 10 day Japan itinerary route choices.",
+  "- [Calendar](https://japanbudgettrip.com/calendar/): 2026 Japan travel timing by month, public holiday pressure, crowds, heat, typhoons, and autumn route fit.",
   "- [Guides](https://japanbudgettrip.com/guides/): full guide directory by region and planning problem.",
   "- [Resources](https://japanbudgettrip.com/resources/): planning resources before checkout.",
   "- [Price Notes](https://japanbudgettrip.com/price-notes/): source notes and price-checking assumptions.",
