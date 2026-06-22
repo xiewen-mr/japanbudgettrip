@@ -12,3 +12,16 @@ Recommended free setup:
 4. Add the custom domains `japanbudgettrip.com` and `www.japanbudgettrip.com`.
 
 No VPS or traditional server is required for this version.
+
+## Maintenance
+
+Run these checks before pushing larger content changes:
+
+```sh
+node scripts/generate-feed.js
+node scripts/generate-llms.js
+node scripts/site-check.js
+node --check script.js
+xmllint --noout sitemap.xml
+xmllint --noout feed.xml
+```
