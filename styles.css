@@ -716,6 +716,76 @@ a {
   border-color: var(--teal);
 }
 
+.planning-flow {
+  background: linear-gradient(180deg, var(--white), #f8f4ed);
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  counter-reset: flow;
+}
+
+.flow-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  min-height: 190px;
+  padding: 18px;
+  border: 1px solid rgba(20, 59, 66, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.flow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  right: -8px;
+  width: 14px;
+  height: 2px;
+  background: rgba(20, 59, 66, 0.24);
+}
+
+.flow-step > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--teal-dark);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.flow-step h3 {
+  margin: 4px 0 8px;
+  color: var(--teal-dark);
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.flow-step p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.flow-step a {
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 820;
+  text-decoration: none;
+}
+
+.flow-step a:hover {
+  text-decoration: underline;
+}
+
 .info-card h3,
 .route h3 {
   margin: 12px 0 10px;
@@ -2919,6 +2989,7 @@ a {
   .guide-cluster-grid,
   .guide-cluster-grid.featured,
   .problem-grid,
+  .flow-grid,
   .path-grid,
   .route-board-grid,
   .checklist-grid,
@@ -2937,6 +3008,19 @@ a {
 
   .region-card.wide {
     grid-column: auto;
+  }
+
+  .flow-step {
+    min-height: auto;
+  }
+
+  .flow-step:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -8px;
+    left: 34px;
+    width: 2px;
+    height: 14px;
   }
 
   .section-header.compact {
