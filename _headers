@@ -1,9 +1,12 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: public, max-age=0, must-revalidate
+  CDN-Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /assets/*
   Cache-Control: public, max-age=2592000
+  CDN-Cache-Control: public, max-age=2592000
 
 /styles.css
   Cache-Control: public, max-age=86400
