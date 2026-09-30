@@ -5,6 +5,7 @@ const path = require("path");
 const siteUrl = "https://japanbudgettrip.com";
 const root = process.cwd();
 const problems = [];
+const nonIndexableHtmlFiles = new Set(["404.html"]);
 
 function fail(message) {
   problems.push(message);
@@ -151,7 +152,7 @@ for (const file of htmlFiles) {
   const html = read(file);
   checkJsonLd(file, html);
   checkLocalReferences(file, html);
-  checkPageMetadata(file, html);
+  if (!nonIndexableHtmlFiles.has(file)) checkPageMetadata(file, html);
 }
 
 for (const file of files.filter((item) => item.endsWith(".css"))) {
