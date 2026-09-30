@@ -37,7 +37,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="styles.css?v=20260703b">
+    <link rel="stylesheet" href="styles.css?v=20261001a">
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -183,6 +183,18 @@
             <span class="result-label">Estimated total</span>
             <strong id="total">$0</strong>
             <span id="daily" class="result-note">$0 per traveler per day</span>
+          </div>
+          <div class="budget-breakdown" aria-label="Estimated cost breakdown">
+            <div><span>Stay</span><strong id="budget-lodging">$0</strong></div>
+            <div><span>Food & basics</span><strong id="budget-food">$0</strong></div>
+            <div><span>Local transport</span><strong id="budget-local-transport">$0</strong></div>
+            <div><span>Sights & buffer</span><strong id="budget-activities">$0</strong></div>
+            <div><span>City changes</span><strong id="budget-city-transfers">$0</strong></div>
+          </div>
+          <div class="calculator-actions" aria-label="Budget estimate actions">
+            <button type="button" id="budget-save">Save estimate</button>
+            <button type="button" id="budget-copy">Copy estimate</button>
+            <p id="budget-status" aria-live="polite">Flights are excluded. Adjust the choices to make this estimate yours.</p>
           </div>
           <div class="calculator-next" aria-label="Next budget planning steps">
             <a href="/guides/japan-trip-cost-2026"><span>Cost guide</span><strong>Check what the number includes</strong></a>
@@ -676,6 +688,6 @@
       </button>
     </aside>
 
-    <script src="script.js?v=20260703b"></script>
+    <script src="script.js?v=20261001a"></script>
   </body>
 </html>

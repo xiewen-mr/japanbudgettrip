@@ -1,6 +1,15 @@
 const form = document.querySelector("#budget-form");
 const totalEl = document.querySelector("#total");
 const dailyEl = document.querySelector("#daily");
+const budgetLodgingEl = document.querySelector("#budget-lodging");
+const budgetFoodEl = document.querySelector("#budget-food");
+const budgetLocalTransportEl = document.querySelector("#budget-local-transport");
+const budgetActivitiesEl = document.querySelector("#budget-activities");
+const budgetCityTransfersEl = document.querySelector("#budget-city-transfers");
+const budgetSaveButton = document.querySelector("#budget-save");
+const budgetCopyButton = document.querySelector("#budget-copy");
+const budgetStatusEl = document.querySelector("#budget-status");
+const budgetStorageKey = "jbt-budget-estimate";
 
 const styleRates = {
   budget: 76,
@@ -23,21 +32,164 @@ function formatUsd(value) {
 }
 
 function updateBudget() {
+  if (!form || !totalEl || !dailyEl) return null;
+
   const fields = form.elements;
-  const days = Math.max(1, Number(fields.days.value) || 1);
-  const travelers = Math.max(1, Number(fields.travelers.value) || 1);
+  const days = Math.min(60, Math.max(1, Number(fields.days.value) || 1));
+  const travelers = Math.min(12, Math.max(1, Number(fields.travelers.value) || 1));
   const dailyRate = styleRates[fields.style.value] || styleRates.comfort;
   const transferCost = cityCosts[fields.cities.value] || cityCosts.two;
-  const total = days * travelers * dailyRate + travelers * transferCost;
+  const dailySubtotal = days * travelers * dailyRate;
+  const cityTransfers = travelers * transferCost;
+  const lodging = Math.round(dailySubtotal * 0.44);
+  const food = Math.round(dailySubtotal * 0.24);
+  const localTransport = Math.round(dailySubtotal * 0.17);
+  const activities = dailySubtotal - lodging - food - localTransport;
+  const total = dailySubtotal + cityTransfers;
 
   totalEl.textContent = formatUsd(total);
   dailyEl.textContent = `${formatUsd(total / travelers / days)} per traveler per day`;
+  if (budgetLodgingEl) budgetLodgingEl.textContent = formatUsd(lodging);
+  if (budgetFoodEl) budgetFoodEl.textContent = formatUsd(food);
+  if (budgetLocalTransportEl) budgetLocalTransportEl.textContent = formatUsd(localTransport);
+  if (budgetActivitiesEl) budgetActivitiesEl.textContent = formatUsd(activities);
+  if (budgetCityTransfersEl) budgetCityTransfersEl.textContent = formatUsd(cityTransfers);
+
+  return { days, travelers, style: fields.style.value, cities: fields.cities.value, dailyRate, lodging, food, localTransport, activities, cityTransfers, total };
 }
 
-if (form) {
-  form.addEventListener("input", updateBudget);
+function budgetLabel(value, labels) {
+  return labels[value] || value;
+}
+
+function budgetShareUrl() {
+  const url = new URL(window.location.href);
+  const fields = form.elements;
+  url.searchParams.set("budgetDays", fields.days.value);
+  url.searchParams.set("budgetTravelers", fields.travelers.value);
+  url.searchParams.set("budgetStyle", fields.style.value);
+  url.searchParams.set("budgetCities", fields.cities.value);
+  url.hash = "calculator";
+  return url.toString();
+}
+
+function syncBudgetUrl() {
+  window.history.replaceState(null, "", budgetShareUrl());
+}
+
+function readBudgetUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const fields = form.elements;
+  const days = Number(params.get("budgetDays"));
+  const travelers = Number(params.get("budgetTravelers"));
+  const style = params.get("budgetStyle");
+  const cities = params.get("budgetCities");
+
+  if (Number.isFinite(days) && days >= 1 && days <= 60) fields.days.value = String(days);
+  if (Number.isFinite(travelers) && travelers >= 1 && travelers <= 12) fields.travelers.value = String(travelers);
+  if (styleRates[style]) fields.style.value = style;
+  if (cityCosts[cities]) fields.cities.value = cities;
+}
+
+function readSavedBudget() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(budgetStorageKey));
+    if (!saved || typeof saved !== "object") return null;
+    return saved;
+  } catch {
+    return null;
+  }
+}
+
+function applyBudgetValues(values) {
+  if (!values) return;
+  const fields = form.elements;
+  const days = Number(values.days);
+  const travelers = Number(values.travelers);
+  if (Number.isFinite(days) && days >= 1 && days <= 60) fields.days.value = String(days);
+  if (Number.isFinite(travelers) && travelers >= 1 && travelers <= 12) fields.travelers.value = String(travelers);
+  if (styleRates[values.style]) fields.style.value = values.style;
+  if (cityCosts[values.cities]) fields.cities.value = values.cities;
+}
+
+function budgetSummary(estimate) {
+  if (!estimate) return "";
+  const styles = { budget: "Budget", comfort: "Comfort", midrange: "Mid-range" };
+  const cities = { one: "One city", two: "Two cities", three: "Three or more cities" };
+  return [
+    "Japan Budget Trip estimate",
+    `${estimate.days} days · ${estimate.travelers} traveler${estimate.travelers === 1 ? "" : "s"} · ${budgetLabel(estimate.style, styles)} · ${budgetLabel(estimate.cities, cities)}`,
+    "",
+    `Estimated on-ground total: ${formatUsd(estimate.total)}`,
+    `Per traveler per day: ${formatUsd(estimate.dailyRate)}`,
+    "",
+    `Stay: ${formatUsd(estimate.lodging)}`,
+    `Food & basics: ${formatUsd(estimate.food)}`,
+    `Local transport: ${formatUsd(estimate.localTransport)}`,
+    `Sights & buffer: ${formatUsd(estimate.activities)}`,
+    `City changes: ${formatUsd(estimate.cityTransfers)}`,
+    "",
+    "Flights are excluded. Shared estimate:",
+    budgetShareUrl()
+  ].join("\n");
+}
+
+function initBudgetCalculator() {
+  if (!form) return;
+
+  const hasSharedBudget = new URLSearchParams(window.location.search).has("budgetDays");
+  if (hasSharedBudget) {
+    readBudgetUrl();
+    if (budgetStatusEl) budgetStatusEl.textContent = "Shared estimate loaded. Update it for your own trip, then save or copy it.";
+  } else {
+    const saved = readSavedBudget();
+    if (saved) {
+      applyBudgetValues(saved);
+      if (budgetStatusEl) budgetStatusEl.textContent = "Last saved estimate loaded from this device.";
+    }
+  }
+
+  function onBudgetChange() {
+    updateBudget();
+    syncBudgetUrl();
+    if (budgetStatusEl) budgetStatusEl.textContent = "Estimate updated. Flights are still excluded.";
+  }
+
+  form.addEventListener("input", onBudgetChange);
+  form.addEventListener("change", onBudgetChange);
+
+  budgetSaveButton?.addEventListener("click", () => {
+    const estimate = updateBudget();
+    if (!estimate) return;
+    try {
+      window.localStorage.setItem(budgetStorageKey, JSON.stringify({
+        days: estimate.days,
+        travelers: estimate.travelers,
+        style: estimate.style,
+        cities: estimate.cities,
+        savedAt: new Date().toISOString()
+      }));
+      if (budgetStatusEl) budgetStatusEl.textContent = "Estimate saved on this device. It will load when you return.";
+    } catch {
+      if (budgetStatusEl) budgetStatusEl.textContent = "Save failed. Your browser may be blocking local storage.";
+    }
+  });
+
+  budgetCopyButton?.addEventListener("click", async () => {
+    const estimate = updateBudget();
+    if (!estimate) return;
+    try {
+      await navigator.clipboard.writeText(budgetSummary(estimate));
+      if (budgetStatusEl) budgetStatusEl.textContent = "Estimate and share link copied. Paste it into your notes or send it to a travel partner.";
+    } catch {
+      if (budgetStatusEl) budgetStatusEl.textContent = "Copy failed. Try again in a browser that allows clipboard access.";
+    }
+  });
+
   updateBudget();
 }
+
+initBudgetCalculator();
 
 const challenge = document.querySelector("#budget-challenge");
 
